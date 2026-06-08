@@ -1,0 +1,3849 @@
+
+Action: Calling memory tool: 'INTEGRATION: 
+1. Claude Sonnet 4.5 text generation for AI chatbot/study assistant in a school ERP platform (using Emergent LLM Universal Key)
+2. JWT-based authentication with role-based access control (Student / Teacher / Admin) in FastAPI + MongoDB
+
+CONSTRAINTS: 
+- Backend is FastAPI + Motor (async MongoDB)
+- Need bcrypt password hashing, JWT tokens, role-based dependency injection
+- Need an idempotent admin/seed user setup
+- AI chatbot will be invoked via /api/ai/chat endpoint'
+Observation: Memory Fetched
+
+
+
+Action: **original_problem_statement**: Create a WORLD-CLASS futuristic AI-powered School ERP & Smart Campus Platform with an insanely premium frontend experience that looks more advanced than top startup websites. The UI/UX quality should feel inspired by Apple, Tesla, Stripe, Linear, Framer, Vercel, Notion, Modern AI SaaS products. This must NOT look like a normal college project. It should feel like a real billion-dollar EdTech startup product.
+
+The MAIN HIGHLIGHT must be:
+1. Cinematic Premium Navbar (floating glassmorphism, scroll-reactive blur, animated underline beam, magnetic hover, neon CTA, mega menu, morphing hamburger, mobile blur overlay — "Apple meets futuristic AI OS")
+2. Futuristic 3D Hero Section (Three.js particle universe, holographic elements, animated gradients, spotlight cursor, typewriter AI text, glassmorphism stats cards)
+3. Ultra Smooth Animations (Framer Motion + GSAP + Three.js)
+4. Modern Dashboard UI (Student/Teacher/Admin with floating sidebar, glass cards, real-time counters, animated charts)
+5. AI-powered futuristic interactions (chatbot, voice assistant style)
+
+Design Language wanted: Futuristic SaaS UI, premium glassmorphism, liquid blur, floating UI panels, animated gradients, dynamic glow, neon cyan highlights, dark navy futuristic background, floating particles, holographic cards, AI ecosystem look.
+
+Navbar links: Home, About, Academics, Admissions, AI Learning, Campus Life, Student Portal, Teacher Portal, Events, Gallery, Contact.
+
+Pages: Home, About, Academics, Admissions, AI Learning, Campus Life, Events, Gallery, Student Dashboard, Teacher Dashboard, Admin Dashboard, Contact.
+
+**user_choices**: User explicitly wants — dark navy futuristic background, neon cyan highlights, premium glassmorphism, animated gradients, floating particles, 3D Three.js hero, cinematic premium navbar with scroll-reactive blur and morphing hamburger, holographic cards, custom animated cursor with glow trail, particle background, AI futuristic aesthetic inspired by Apple/Tesla/Stripe/Linear/Framer/Vercel.
+
+**key_functionalities**: Cinematic Premium Navbar, 3D Three.js Hero Section, Animated Stats Cards, Student/Teacher/Admin Dashboards with charts, AI Chatbot widget, Admissions form, Events grid, Gallery, Contact form, Auth (login/signup).
+
+**app_type**: hybrid_fullstack (premium SaaS landing + multi-role dashboards)
+Observation: ## Design Guidelines Created
+- Established a "Futuristic OS" archetype (Dark Theme, Deep Navy & Neon Cyan palette) inspired by Vercel/Linear design languages.
+- Gathered real-world imagery via unsplash encompassing abstract holographic textures, glowing particles, and modern tech-driven campus life to replace all placeholders.
+- Specified technical animations using Framer Motion (spotlight cursors, magnetic nav) and Three.js (particle universe) for the premium cinematic feel.
+- Documented layout, component, and animation rules in `/app/design_guidelines.json` for handoff.
+- Next Action Items: Main agent can now begin implementing the global layout (Navbar, Footer, Hero) using the design guidelines and selected assets.
+
+Action: {"type": "mcp_tool", "tool_name": "mcp_view_bulk", "tool_arguments": {"paths": ["/app/design_guidelines.json", "/app/backend/server.py", "/app/backend/requirements.txt", "/app/backend/.env", "/app/frontend/package.json", "/app/frontend/.env", "/app/frontend/src/App.js", "/app/frontend/src/App.css", "/app/frontend/src/index.css", "/app/frontend/tailwind.config.js"]}}
+Observation: ===FILE: /app/design_guidelines.json
+/app/design_guidelines.json:
+1|{
+2|  "theme": "dark",
+3|  "archetype": "7 (Electric & Neon) - Futuristic OS variation",
+4|  "colors": {
+5|    "background": "Deep Navy (#040914)",
+6|    "surface": "Glassmorphic Dark (rgba(4, 9, 20, 0.4))",
+7|    "primary_accent": "Neon Cyan (#00F0FF)",
+8|    "secondary_accent": "Electric Blue (#0055FF)",
+9|    "text_primary": "Pure White (#FFFFFF)",
+10|    "text_secondary": "Slate Gray (#94A3B8)",
+11|    "border": "White/10 (rgba(255,255,255,0.1))",
+12|    "glow": "Neon Cyan Glow (0 0 20px rgba(0,240,255,0.3))"
+13|  },
+14|  "typography": {
+15|    "headings": "Cabinet Grotesk",
+16|    "body": "Inter",
+17|    "mono": "JetBrains Mono",
+18|    "rules": [
+19|      "Headings use tight tracking (-0.02em to -0.04em)",
+20|      "Body text relies on high contrast and 16px base size",
+21|      "Overlines/Labels are uppercase, JetBrains Mono, wide tracking"
+22|    ]
+23|  },
+24|  "layout_spacing": {
+25|    "grid_system": "Bento grids for features and dashboards",
+26|    "spacing_scale": "Tailwind standard (p-4, p-8, p-12, p-24)",
+27|    "surface_styles": {
+28|      "navbar": "Crystal Glass (backdrop-blur-xl bg-slate-950/50 border-b border-white/10)",
+29|      "cards": "Holographic Glass (bg-slate-900/30 backdrop-blur-md border border-white/10 hover:border-cyan-500/50 transition-colors)",
+30|      "buttons": "Neon Solid or Glass with Cyan Glow"
+31|    }
+32|  },
+33|  "animations": {
+34|    "libraries": [
+35|      "framer-motion",
+36|      "lucide-react",
+37|      "recharts",
+38|      "@react-three/fiber",
+39|      "@react-three/drei",
+40|      "clsx",
+41|      "tailwind-merge"
+42|    ],
+43|    "hero_3d": "Three.js Particle Universe with slow rotation and cyan/blue nodes",
+44|    "interactions": [
+45|      "Magnetic hover on navbar links",
+46|      "Scroll-reactive navbar (transparent at top, glass on scroll)",
+47|      "Animated underline beam for active links",
+48|      "Spotlight cursor effect on cards (radial gradient following mouse)",
+49|      "Typewriter AI text effect in hero"
+50|    ]
+51|  },
+52|  "component_instructions": {
+53|    "navbar": "Cinematic floating glassmorphism. Use fixed top-0 w-full z-50. Implement scroll-reactive blur. Mega menu using Shadcn NavigationMenu customized to dark theme. Morphing hamburger icon for mobile.",
+54|    "hero": "Full height (min-h-screen). Absolute positioned canvas for Three.js particles behind content. Z-index layering for text over 3D. Glassmorphism stats cards floating on sides.",
+55|    "dashboard": "Floating sidebar with glassmorphic style. Real-time counters with Framer Motion number tickers. Recharts with custom neon tooltips.",
+56|    "ai_chatbot": "Fixed widget bottom right. Glassmorphic UI, glowing cyan pulse animation when active.",
+57|    "cards": "Must implement the 'Tracing Beam' or 'Holographic Glow' on hover using Framer Motion."
+58|  },
+59|  "media": {
+60|    "backgrounds": [
+61|      {
+62|        "url": "https://images.unsplash.com/photo-1770486036751-e55247238964?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzR8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGRhcmslMjBuYXZ5JTIwYmFja2dyb3VuZCUyMHBhcnRpY2xlcyUyMGdsb3dpbmd8ZW58MHx8fHwxNzc4NjcyMjQ0fDA&ixlib=rb-4.1.0&q=85",
+63|        "description": "Abstract particles for hero or footer background",
+64|        "category": "hero_background"
+65|      },
+66|      {
+67|        "url": "https://images.unsplash.com/photo-1763926444199-836ec5b026ac?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjh8MHwxfHNlYXJjaHwyfHxuZW9uJTIwY3lhbiUyMGhvbG9ncmFwaGljJTIwdGVjaG5vbG9neSUyMGFic3RyYWN0JTIwZGFya3xlbnwwfHx8fDE3Nzg2NzIyNDR8MA&ixlib=rb-4.1.0&q=85",
+68|        "description": "Cyan holographic tech texture for AI Learning page or cards",
+69|        "category": "texture"
+70|      },
+71|      {
+72|        "url": "https://images.unsplash.com/photo-1743350447930-b75a46063431?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjh8MHwxfHNlYXJjaHwxfHxuZW9uJTIwY3lhbiUyMGhvbG9ncmFwaGljJTIwdGVjaG5vbG9neSUyMGFic3RyYWN0JTIwZGFya3xlbnwwfHx8fDE3Nzg2NzIyNDR8MA&ixlib=rb-4.1.0&q=85",
+73|        "description": "Glossy iridescent dark holographic texture",
+74|        "category": "texture"
+75|      }
+76|    ],
+77|    "campus_life": [
+78|      {
+79|        "url": "https://images.unsplash.com/photo-1600903308878-bf5e554ab841?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNDR8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB1bml2ZXJzaXR5JTIwY2FtcHVzJTIwbW9kZXJuJTIwYXJjaGl0ZWN0dXJlfGVufDB8fHx8MTc3ODY3MjIyN3ww&ixlib=rb-4.1.0&q=85",
+80|        "description": "Modern campus building",
+81|        "category": "gallery"
+82|      },
+83|      {
+84|        "url": "https://images.unsplash.com/photo-1536982679170-1b2277759c92?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNDR8MHwxfHNlYXJjaHwyfHxtb2Rlcm4lMjB1bml2ZXJzaXR5JTIwY2FtcHVzJTIwbW9kZXJuJTIwYXJjaGl0ZWN0dXJlfGVufDB8fHx8MTc3ODY3MjIyN3ww&ixlib=rb-4.1.0&q=85",
+85|        "description": "Silver futuristic campus architecture",
+86|        "category": "gallery"
+87|      },
+88|      {
+89|        "url": "https://images.unsplash.com/photo-1742440711276-679934f5b988?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTJ8MHwxfHNlYXJjaHwyfHxkaXZlcnNlJTIwc3R1ZGVudHMlMjB1c2luZyUyMHRhYmxldHMlMjBsaWJyYXJ5JTIwbW9kZXJufGVufDB8fHx8MTc3ODY3MjIyN3ww&ixlib=rb-4.1.0&q=85",
+90|        "description": "Students using tech in modern library",
+91|        "category": "students"
+92|      },
+93|      {
+94|        "url": "https://images.unsplash.com/photo-1616769212339-9eea56b0014e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTJ8MHwxfHNlYXJjaHwzfHxkaXZlcnNlJTIwc3R1ZGVudHMlMjB1c2luZyUyMHRhYmxldHMlMjBsaWJyYXJ5JTIwbW9kZXJufGVufDB8fHx8MTc3ODY3MjIyN3ww&ixlib=rb-4.1.0&q=85",
+95|        "description": "Diverse students at campus stairs",
+96|        "category": "students"
+97|      }
+98|    ]
+99|  },
+100|  "instructions_to_main_agent": [
+101|    "Strictly follow the Dark Theme with Navy/Cyan palette. Do not use generic Tailwind blue.",
+102|    "Implement the navbar with pure Tailwind/Framer Motion. Use Shadcn only if heavily customized. It must be sticky, glassmorphic (backdrop-blur-xl bg-slate-950/50), with a bottom border (border-white/10).",
+103|    "For the 3D Hero, install and use @react-three/fiber and @react-three/drei. Create a Points geometry (particles) slowly rotating. Ensure canvas has z-index: -1.",
+104|    "Apply spotlight cursor effect on major cards using a radial gradient mapped to mouse coordinates via Framer Motion.",
+105|    "Ensure all interactive elements have proper focus/hover states and include data-testid attributes.",
+106|    "Never use generic placeholder images. Use the provided URLs.",
+107|    "Dashboards must use the Bento Grid strategy. Avoid full-screen generic tables without glassmorphic styling."
+108|  ]
+109|}
+
+===END
+
+===FILE: /app/backend/server.py
+/app/backend/server.py:
+1|from fastapi import FastAPI, APIRouter
+2|from dotenv import load_dotenv
+3|from starlette.middleware.cors import CORSMiddleware
+4|from motor.motor_asyncio import AsyncIOMotorClient
+5|import os
+6|import logging
+7|from pathlib import Path
+8|from pydantic import BaseModel, Field, ConfigDict
+9|from typing import List
+10|import uuid
+11|from datetime import datetime, timezone
+12|
+13|
+14|ROOT_DIR = Path(__file__).parent
+15|load_dotenv(ROOT_DIR / '.env')
+16|
+17|# MongoDB connection
+18|mongo_url = os.environ['MONGO_URL']
+19|client = AsyncIOMotorClient(mongo_url)
+20|db = client[os.environ['DB_NAME']]
+21|
+22|# Create the main app without a prefix
+23|app = FastAPI()
+24|
+25|# Create a router with the /api prefix
+26|api_router = APIRouter(prefix="/api")
+27|
+28|
+29|# Define Models
+30|class StatusCheck(BaseModel):
+31|    model_config = ConfigDict(extra="ignore")  # Ignore MongoDB's _id field
+32|    
+33|    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+34|    client_name: str
+35|    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+36|
+37|class StatusCheckCreate(BaseModel):
+38|    client_name: str
+39|
+40|# Add your routes to the router instead of directly to app
+41|@api_router.get("/")
+42|async def root():
+43|    return {"message": "Hello World"}
+44|
+45|@api_router.post("/status", response_model=StatusCheck)
+46|async def create_status_check(input: StatusCheckCreate):
+47|    status_dict = input.model_dump()
+48|    status_obj = StatusCheck(**status_dict)
+49|    
+50|    # Convert to dict and serialize datetime to ISO string for MongoDB
+51|    doc = status_obj.model_dump()
+52|    doc['timestamp'] = doc['timestamp'].isoformat()
+53|    
+54|    _ = await db.status_checks.insert_one(doc)
+55|    return status_obj
+56|
+57|@api_router.get("/status", response_model=List[StatusCheck])
+58|async def get_status_checks():
+59|    # Exclude MongoDB's _id field from the query results
+60|    status_checks = await db.status_checks.find({}, {"_id": 0}).to_list(1000)
+61|    
+62|    # Convert ISO string timestamps back to datetime objects
+63|    for check in status_checks:
+64|        if isinstance(check['timestamp'], str):
+65|            check['timestamp'] = datetime.fromisoformat(check['timestamp'])
+66|    
+67|    return status_checks
+68|
+69|# Include the router in the main app
+70|app.include_router(api_router)
+71|
+72|app.add_middleware(
+73|    CORSMiddleware,
+74|    allow_credentials=True,
+75|    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
+76|    allow_methods=["*"],
+77|    allow_headers=["*"],
+78|)
+79|
+80|# Configure logging
+81|logging.basicConfig(
+82|    level=logging.INFO,
+83|    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+84|)
+85|logger = logging.getLogger(__name__)
+86|
+87|@app.on_event("shutdown")
+88|async def shutdown_db_client():
+89|    client.close()
+
+===END
+
+===FILE: /app/backend/requirements.txt
+/app/backend/requirements.txt:
+1|fastapi==0.110.1
+2|uvicorn==0.25.0
+3|boto3>=1.34.129
+4|requests-oauthlib>=2.0.0
+5|cryptography>=42.0.8
+6|python-dotenv>=1.0.1
+7|pymongo==4.5.0
+8|pydantic>=2.6.4
+9|email-validator>=2.2.0
+10|pyjwt>=2.10.1
+11|bcrypt==4.1.3
+12|passlib>=1.7.4
+13|tzdata>=2024.2
+14|motor==3.3.1
+15|pytest>=8.0.0
+16|black>=24.1.1
+17|isort>=5.13.2
+18|flake8>=7.0.0
+19|mypy>=1.8.0
+20|python-jose>=3.3.0
+21|requests>=2.31.0
+22|pandas>=2.2.0
+23|numpy>=1.26.0
+24|python-multipart>=0.0.9
+25|jq>=1.6.0
+26|typer>=0.9.0
+27|emergentintegrations==0.1.0
+28|
+
+===END
+
+===FILE: /app/backend/.env
+/app/backend/.env:
+1|MONGO_URL="mongodb://localhost:27017"
+2|DB_NAME="test_database"
+3|CORS_ORIGINS="*"
+
+===END
+
+===FILE: /app/frontend/package.json
+/app/frontend/package.json:
+1|{
+2|  "name": "frontend",
+3|  "version": "0.1.0",
+4|  "private": true,
+5|  "dependencies": {
+6|    "@hookform/resolvers": "^5.0.1",
+7|    "@radix-ui/react-accordion": "^1.2.8",
+8|    "@radix-ui/react-alert-dialog": "^1.1.11",
+9|    "@radix-ui/react-aspect-ratio": "^1.1.4",
+10|    "@radix-ui/react-avatar": "^1.1.7",
+11|    "@radix-ui/react-checkbox": "^1.2.3",
+12|    "@radix-ui/react-collapsible": "^1.1.8",
+13|    "@radix-ui/react-context-menu": "^2.2.12",
+14|    "@radix-ui/react-dialog": "^1.1.11",
+15|    "@radix-ui/react-dropdown-menu": "^2.1.12",
+16|    "@radix-ui/react-hover-card": "^1.1.11",
+17|    "@radix-ui/react-label": "^2.1.4",
+18|    "@radix-ui/react-menubar": "^1.1.12",
+19|    "@radix-ui/react-navigation-menu": "^1.2.10",
+20|    "@radix-ui/react-popover": "^1.1.11",
+21|    "@radix-ui/react-progress": "^1.1.4",
+22|    "@radix-ui/react-radio-group": "^1.3.4",
+23|    "@radix-ui/react-scroll-area": "^1.2.6",
+24|    "@radix-ui/react-select": "^2.2.2",
+25|    "@radix-ui/react-separator": "^1.1.4",
+26|    "@radix-ui/react-slider": "^1.3.2",
+27|    "@radix-ui/react-slot": "^1.2.0",
+28|    "@radix-ui/react-switch": "^1.2.2",
+29|    "@radix-ui/react-tabs": "^1.1.9",
+30|    "@radix-ui/react-toast": "^1.2.11",
+31|    "@radix-ui/react-toggle": "^1.1.6",
+32|    "@radix-ui/react-toggle-group": "^1.1.7",
+33|    "@radix-ui/react-tooltip": "^1.2.4",
+34|    "axios": "^1.8.4",
+35|    "class-variance-authority": "^0.7.1",
+36|    "clsx": "^2.1.1",
+37|    "cmdk": "^1.1.1",
+38|    "cra-template": "1.2.0",
+39|    "date-fns": "^4.1.0",
+40|    "embla-carousel-react": "^8.6.0",
+41|    "input-otp": "^1.4.2",
+42|    "lucide-react": "^0.507.0",
+43|    "next-themes": "^0.4.6",
+44|    "react": "^19.0.0",
+45|    "react-day-picker": "8.10.1",
+46|    "react-dom": "^19.0.0",
+47|    "react-hook-form": "^7.56.2",
+48|    "react-resizable-panels": "^3.0.1",
+49|    "react-router-dom": "^7.5.1",
+50|    "react-scripts": "5.0.1",
+51|    "recharts": "^3.6.0",
+52|    "sonner": "^2.0.3",
+53|    "tailwind-merge": "^3.2.0",
+54|    "tailwindcss-animate": "^1.0.7",
+55|    "vaul": "^1.1.2",
+56|    "zod": "^3.24.4"
+57|  },
+58|  "scripts": {
+59|    "start": "craco start",
+60|    "build": "craco build",
+61|    "test": "craco test"
+62|  },
+63|  "browserslist": {
+64|    "production": [
+65|      ">0.2%",
+66|      "not dead",
+67|      "not op_mini all"
+68|    ],
+69|    "development": [
+70|      "last 1 chrome version",
+71|      "last 1 firefox version",
+72|      "last 1 safari version"
+73|    ]
+74|  },
+75|  "devDependencies": {
+76|    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+77|    "@craco/craco": "^7.1.0",
+78|    "@emergentbase/visual-edits": "https://assets.emergent.sh/npm/emergentbase-visual-edits-1.0.8.tgz",
+79|    "@eslint/js": "9.23.0",
+80|    "autoprefixer": "^10.4.20",
+81|    "eslint": "9.23.0",
+82|    "eslint-plugin-import": "2.31.0",
+83|    "eslint-plugin-jsx-a11y": "6.10.2",
+84|    "eslint-plugin-react": "7.37.4",
+85|    "eslint-plugin-react-hooks": "5.2.0",
+86|    "globals": "15.15.0",
+87|    "postcss": "^8.4.49",
+88|    "tailwindcss": "^3.4.17"
+89|  },
+90|  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+91|}
+92|
+
+===END
+
+===FILE: /app/frontend/.env
+/app/frontend/.env:
+1|REACT_APP_BACKEND_URL=https://nexus-campus-3.preview.emergentagent.com
+2|WDS_SOCKET_PORT=443
+3|ENABLE_HEALTH_CHECK=false
+
+===END
+
+===FILE: /app/frontend/src/App.js
+/app/frontend/src/App.js:
+1|import { useEffect } from "react";
+2|import "@/App.css";
+3|import { BrowserRouter, Routes, Route } from "react-router-dom";
+4|import axios from "axios";
+5|
+6|const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+7|const API = `${BACKEND_URL}/api`;
+8|
+9|const Home = () => {
+10|  const helloWorldApi = async () => {
+11|    try {
+12|      const response = await axios.get(`${API}/`);
+13|      console.log(response.data.message);
+14|    } catch (e) {
+15|      console.error(e, `errored out requesting / api`);
+16|    }
+17|  };
+18|
+19|  useEffect(() => {
+20|    helloWorldApi();
+21|  }, []);
+22|
+23|  return (
+24|    <div>
+25|      <header className="App-header">
+26|        <a
+27|          className="App-link"
+28|          href="https://emergent.sh"
+29|          target="_blank"
+30|          rel="noopener noreferrer"
+31|        >
+32|          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
+33|        </a>
+34|        <p className="mt-5">Building something incredible ~!</p>
+35|      </header>
+36|    </div>
+37|  );
+38|};
+39|
+40|function App() {
+41|  return (
+42|    <div className="App">
+43|      <BrowserRouter>
+44|        <Routes>
+45|          <Route path="/" element={<Home />}>
+46|            <Route index element={<Home />} />
+47|          </Route>
+48|        </Routes>
+49|      </BrowserRouter>
+50|    </div>
+51|  );
+52|}
+53|
+54|export default App;
+55|
+
+===END
+
+===FILE: /app/frontend/src/App.css
+/app/frontend/src/App.css:
+1|.App-logo {
+2|    height: 40vmin;
+3|    pointer-events: none;
+4|}
+5|
+6|@media (prefers-reduced-motion: no-preference) {
+7|    .App-logo {
+8|        animation: App-logo-spin infinite 20s linear;
+9|    }
+10|}
+11|
+12|.App-header {
+13|    background-color: #0f0f10;
+14|    min-height: 100vh;
+15|    display: flex;
+16|    flex-direction: column;
+17|    align-items: center;
+18|    justify-content: center;
+19|    font-size: calc(10px + 2vmin);
+20|    color: white;
+21|}
+22|
+23|.App-link {
+24|    color: #61dafb;
+25|}
+26|
+27|@keyframes App-logo-spin {
+28|    from {
+29|        transform: rotate(0deg);
+30|    }
+31|    to {
+32|        transform: rotate(360deg);
+33|    }
+34|}
+35|
+
+===END
+
+===FILE: /app/frontend/src/index.css
+/app/frontend/src/index.css:
+1|@tailwind base;
+2|@tailwind components;
+3|@tailwind utilities;
+4|
+5|body {
+6|    margin: 0;
+7|    font-family:
+8|        -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+9|        "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+10|        sans-serif;
+11|    -webkit-font-smoothing: antialiased;
+12|    -moz-osx-font-smoothing: grayscale;
+13|}
+14|
+15|code {
+16|    font-family:
+17|        source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+18|}
+19|
+20|@layer base {
+21|    :root {
+22|        --background: 0 0% 100%;
+23|        --foreground: 0 0% 3.9%;
+24|        --card: 0 0% 100%;
+25|        --card-foreground: 0 0% 3.9%;
+26|        --popover: 0 0% 100%;
+27|        --popover-foreground: 0 0% 3.9%;
+28|        --primary: 0 0% 9%;
+29|        --primary-foreground: 0 0% 98%;
+30|        --secondary: 0 0% 96.1%;
+31|        --secondary-foreground: 0 0% 9%;
+32|        --muted: 0 0% 96.1%;
+33|        --muted-foreground: 0 0% 45.1%;
+34|        --accent: 0 0% 96.1%;
+35|        --accent-foreground: 0 0% 9%;
+36|        --destructive: 0 84.2% 60.2%;
+37|        --destructive-foreground: 0 0% 98%;
+38|        --border: 0 0% 89.8%;
+39|        --input: 0 0% 89.8%;
+40|        --ring: 0 0% 3.9%;
+41|        --chart-1: 12 76% 61%;
+42|        --chart-2: 173 58% 39%;
+43|        --chart-3: 197 37% 24%;
+44|        --chart-4: 43 74% 66%;
+45|        --chart-5: 27 87% 67%;
+46|        --radius: 0.5rem;
+47|    }
+48|    .dark {
+49|        --background: 0 0% 3.9%;
+50|        --foreground: 0 0% 98%;
+51|        --card: 0 0% 3.9%;
+52|        --card-foreground: 0 0% 98%;
+53|        --popover: 0 0% 3.9%;
+54|        --popover-foreground: 0 0% 98%;
+55|        --primary: 0 0% 98%;
+56|        --primary-foreground: 0 0% 9%;
+57|        --secondary: 0 0% 14.9%;
+58|        --secondary-foreground: 0 0% 98%;
+59|        --muted: 0 0% 14.9%;
+60|        --muted-foreground: 0 0% 63.9%;
+61|        --accent: 0 0% 14.9%;
+62|        --accent-foreground: 0 0% 98%;
+63|        --destructive: 0 62.8% 30.6%;
+64|        --destructive-foreground: 0 0% 98%;
+65|        --border: 0 0% 14.9%;
+66|        --input: 0 0% 14.9%;
+67|        --ring: 0 0% 83.1%;
+68|        --chart-1: 220 70% 50%;
+69|        --chart-2: 160 60% 45%;
+70|        --chart-3: 30 80% 55%;
+71|        --chart-4: 280 65% 60%;
+72|        --chart-5: 340 75% 55%;
+73|    }
+74|}
+75|
+76|@layer base {
+77|    * {
+78|        @apply border-border;
+79|    }
+80|    body {
+81|        @apply bg-background text-foreground;
+82|    }
+83|}
+84|
+85|@layer base {
+86|    [data-debug-wrapper="true"] {
+87|        display: contents !important;
+88|    }
+89|
+90|    [data-debug-wrapper="true"] > * {
+91|        margin-left: inherit;
+92|        margin-right: inherit;
+93|        margin-top: inherit;
+94|        margin-bottom: inherit;
+95|        padding-left: inherit;
+96|        padding-right: inherit;
+97|        padding-top: inherit;
+98|        padding-bottom: inherit;
+99|        column-gap: inherit;
+100|        row-gap: inherit;
+101|        gap: inherit;
+102|        border-left-width: inherit;
+103|        border-right-width: inherit;
+104|        border-top-width: inherit;
+105|        border-bottom-width: inherit;
+106|        border-left-style: inherit;
+107|        border-right-style: inherit;
+108|        border-top-style: inherit;
+109|        border-bottom-style: inherit;
+110|        border-left-color: inherit;
+111|        border-right-color: inherit;
+112|        border-top-color: inherit;
+113|        border-bottom-color: inherit;
+114|    }
+115|}
+116|
+
+===END
+
+===FILE: /app/frontend/tailwind.config.js
+/app/frontend/tailwind.config.js:
+1|/** @type {import('tailwindcss').Config} */
+2|module.exports = {
+3|    darkMode: ["class"],
+4|    content: [
+5|    "./src/**/*.{js,jsx,ts,tsx}",
+6|    "./public/index.html"
+7|  ],
+8|  theme: {
+9|        extend: {
+10|                borderRadius: {
+11|                        lg: 'var(--radius)',
+12|                        md: 'calc(var(--radius) - 2px)',
+13|                        sm: 'calc(var(--radius) - 4px)'
+14|                },
+15|                colors: {
+16|                        background: 'hsl(var(--background))',
+17|                        foreground: 'hsl(var(--foreground))',
+18|                        card: {
+19|                                DEFAULT: 'hsl(var(--card))',
+20|                                foreground: 'hsl(var(--card-foreground))'
+21|                        },
+22|                        popover: {
+23|                                DEFAULT: 'hsl(var(--popover))',
+24|                                foreground: 'hsl(var(--popover-foreground))'
+25|                        },
+26|                        primary: {
+27|                                DEFAULT: 'hsl(var(--primary))',
+28|                                foreground: 'hsl(var(--primary-foreground))'
+29|                        },
+30|                        secondary: {
+31|                                DEFAULT: 'hsl(var(--secondary))',
+32|                                foreground: 'hsl(var(--secondary-foreground))'
+33|                        },
+34|                        muted: {
+35|                                DEFAULT: 'hsl(var(--muted))',
+36|                                foreground: 'hsl(var(--muted-foreground))'
+37|                        },
+38|                        accent: {
+39|                                DEFAULT: 'hsl(var(--accent))',
+40|                                foreground: 'hsl(var(--accent-foreground))'
+41|                        },
+42|                        destructive: {
+43|                                DEFAULT: 'hsl(var(--destructive))',
+44|                                foreground: 'hsl(var(--destructive-foreground))'
+45|                        },
+46|                        border: 'hsl(var(--border))',
+47|                        input: 'hsl(var(--input))',
+48|                        ring: 'hsl(var(--ring))',
+49|                        chart: {
+50|                                '1': 'hsl(var(--chart-1))',
+51|                                '2': 'hsl(var(--chart-2))',
+52|                                '3': 'hsl(var(--chart-3))',
+53|                                '4': 'hsl(var(--chart-4))',
+54|                                '5': 'hsl(var(--chart-5))'
+55|                        }
+56|                },
+57|                keyframes: {
+58|                        'accordion-down': {
+59|                                from: {
+60|                                        height: '0'
+61|                                },
+62|                                to: {
+63|                                        height: 'var(--radix-accordion-content-height)'
+64|                                }
+65|                        },
+66|                        'accordion-up': {
+67|                                from: {
+68|                                        height: 'var(--radix-accordion-content-height)'
+69|                                },
+70|                                to: {
+71|                                        height: '0'
+72|                                }
+73|                        }
+74|                },
+75|                animation: {
+76|                        'accordion-down': 'accordion-down 0.2s ease-out',
+77|                        'accordion-up': 'accordion-up 0.2s ease-out'
+78|                }
+79|        }
+80|  },
+81|  plugins: [require("tailwindcss-animate")],
+82|};
+
+===END
+
+
+
+<Plan>
+**Phase 1**: Install deps, update env, build full FastAPI backend (auth + role-based + AI chat + seed)
+**Phase 2**: Build futuristic frontend (Navbar, Hero with 3D, all pages, 3 dashboards, AI chatbot, cursor glow)
+**Phase 3**: Test & finish
+
+Let me kick off deps and backend in parallel.
+Action: $ cd /app/frontend && yarn add framer-motion three @react-three/fiber @react-three/drei gsap lenis 2>&1 | tail -20
+Observation: yarn add v1.22.22
+[1/4] Resolving packages...
+[2/4] Fetching packages...
+error camera-controls@3.1.2: The engine "node" is incompatible with this module. Expected version ">=22.0.0". Got "20.20.2"
+error Found incompatible module.
+info Visit https://yarnpkg.com/en/docs/cli/add for documentation about this command.
+Exit code: 0
+
+Action: file_editor create /app/backend/.env --file-text "MONGO_URL=\"mongodb://localhost:27017\"
+DB_NAME=\"test_database\"
+CORS_ORIGINS=\"*\"
+JWT_SECRET=\"nexus-campus-secret-key-change-in-prod-2026\"
+JWT_ALGORITHM=\"HS256\"
+JWT_EXPIRE_MINUTES=\"10080\"
+EMERGENT_LLM_KEY=\"sk-emergent-c71506f3a498032A16\"
+"
+Observation: Overwrite successful: /app/backend/.env
+
+Action: $ cd /app/frontend && yarn add framer-motion three @react-three/fiber "@react-three/drei@^9.114.0" gsap lenis 2>&1 | tail -15
+Observation: ├─ react-use-measure@2.1.7
+├─ stats-gl@2.4.2
+├─ stats.js@0.17.0
+├─ three-mesh-bvh@0.7.8
+├─ three-stdlib@2.36.1
+├─ three@0.184.0
+├─ troika-three-text@0.52.4
+├─ troika-three-utils@0.52.4
+├─ troika-worker-utils@0.52.0
+├─ tunnel-rat@0.1.2
+├─ utility-types@3.11.0
+├─ webgl-constants@1.1.1
+├─ webgl-sdf-generator@1.1.1
+└─ zustand@5.0.13
+Done in 26.29s.
+Exit code: 0
+Dependencies installed. Now build the backend in full, then frontend in parallel.
+Action: file_editor create /app/backend/server.py --file-text "from fastapi import FastAPI, APIRouter, HTTPException, Depends, status, Query
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from dotenv import load_dotenv
+from starlette.middleware.cors import CORSMiddleware
+from motor.motor_asyncio import AsyncIOMotorClient
+import os
+import logging
+import asyncio
+from pathlib import Path
+from pydantic import BaseModel, Field, EmailStr, ConfigDict
+from typing import List, Optional, Literal
+import uuid
+from datetime import datetime, timezone, timedelta
+import bcrypt
+import jwt
+from emergentintegrations.llm.chat import LlmChat, UserMessage
+
+ROOT_DIR = Path(__file__).parent
+load_dotenv(ROOT_DIR / '.env')
+
+# Environment
+MONGO_URL = os.environ['MONGO_URL']
+DB_NAME = os.environ['DB_NAME']
+JWT_SECRET = os.environ['JWT_SECRET']
+JWT_ALG = os.environ['JWT_ALGORITHM']
+JWT_EXPIRE_MIN = int(os.environ['JWT_EXPIRE_MINUTES'])
+EMERGENT_LLM_KEY = os.environ['EMERGENT_LLM_KEY']
+
+client = AsyncIOMotorClient(MONGO_URL)
+db = client[DB_NAME]
+
+app = FastAPI(title=\"Nexus Campus API\")
+api_router = APIRouter(prefix=\"/api\")
+security = HTTPBearer(auto_error=False)
+
+# ---------------------------------------------------------------------------
+# Helpers
+# ---------------------------------------------------------------------------
+def now_iso() -> str:
+    return datetime.now(timezone.utc).isoformat()
+
+def hash_password(pw: str) -> str:
+    return bcrypt.hashpw(pw.encode(), bcrypt.gensalt()).decode()
+
+def verify_password(pw: str, hashed: str) -> bool:
+    try:
+        return bcrypt.checkpw(pw.encode(), hashed.encode())
+    except Exception:
+        return False
+
+def create_token(user_id: str, role: str) -> str:
+    payload = {
+        \"sub\": user_id,
+        \"role\": role,
+        \"exp\": datetime.now(timezone.utc) + timedelta(minutes=JWT_EXPIRE_MIN),
+        \"iat\": datetime.now(timezone.utc),
+    }
+    return jwt.encode(payload, JWT_SECRET, algorithm=JWT_ALG)
+
+async def get_current_user(creds: Optional[HTTPAuthorizationCredentials] = Depends(security)):
+    if not creds:
+        raise HTTPException(status_code=401, detail=\"Missing token\")
+    try:
+        payload = jwt.decode(creds.credentials, JWT_SECRET, algorithms=[JWT_ALG])
+    except jwt.PyJWTError:
+        raise HTTPException(status_code=401, detail=\"Invalid or expired token\")
+    user = await db.users.find_one({\"id\": payload[\"sub\"]}, {\"_id\": 0, \"password\": 0})
+    if not user:
+        raise HTTPException(status_code=401, detail=\"User not found\")
+    return user
+
+def require_role(*roles: str):
+    async def checker(user=Depends(get_current_user)):
+        if user.get(\"role\") not in roles:
+            raise HTTPException(status_code=403, detail=\"Insufficient permissions\")
+        return user
+    return checker
+
+# ---------------------------------------------------------------------------
+# Models
+# ---------------------------------------------------------------------------
+Role = Literal[\"student\", \"teacher\", \"admin\"]
+
+class UserPublic(BaseModel):
+    id: str
+    name: str
+    email: EmailStr
+    role: Role
+    avatar: Optional[str] = None
+    class_name: Optional[str] = None
+    subject: Optional[str] = None
+    created_at: str
+
+class SignupReq(BaseModel):
+    name: str
+    email: EmailStr
+    password: str = Field(min_length=6)
+    role: Role = \"student\"
+    class_name: Optional[str] = None
+    subject: Optional[str] = None
+
+class LoginReq(BaseModel):
+    email: EmailStr
+    password: str
+
+class AuthResp(BaseModel):
+    token: str
+    user: UserPublic
+
+class AdmissionReq(BaseModel):
+    full_name: str
+    email: EmailStr
+    phone: str
+    dob: str
+    grade: str
+    guardian_name: str
+    address: Optional[str] = None
+    message: Optional[str] = None
+
+class ContactReq(BaseModel):
+    name: str
+    email: EmailStr
+    subject: str
+    message: str
+
+class AssignmentReq(BaseModel):
+    title: str
+    description: str
+    subject: str
+    class_name: str
+    due_date: str
+
+class AttendanceReq(BaseModel):
+    student_id: str
+    date: str
+    status: Literal[\"present\", \"absent\", \"late\"]
+    class_name: str
+
+class EventReq(BaseModel):
+    title: str
+    description: str
+    date: str
+    location: str
+    category: str
+    image: Optional[str] = None
+
+class NoticeReq(BaseModel):
+    title: str
+    body: str
+    priority: Literal[\"low\", \"medium\", \"high\"] = \"medium\"
+
+class ChatReq(BaseModel):
+    message: str
+    session_id: Optional[str] = None
+
+# ---------------------------------------------------------------------------
+# Auth Routes
+# ---------------------------------------------------------------------------
+@api_router.post(\"/auth/signup\", response_model=AuthResp)
+async def signup(req: SignupReq):
+    existing = await db.users.find_one({\"email\": req.email.lower()})
+    if existing:
+        raise HTTPException(status_code=400, detail=\"Email already registered\")
+    user_id = str(uuid.uuid4())
+    doc = {
+        \"id\": user_id,
+        \"name\": req.name,
+        \"email\": req.email.lower(),
+        \"password\": hash_password(req.password),
+        \"role\": req.role,
+        \"avatar\": None,
+        \"class_name\": req.class_name,
+        \"subject\": req.subject,
+        \"created_at\": now_iso(),
+    }
+    await db.users.insert_one(doc)
+    token = create_token(user_id, req.role)
+    doc.pop(\"password\", None)
+    doc.pop(\"_id\", None)
+    return {\"token\": token, \"user\": doc}
+
+@api_router.post(\"/auth/login\", response_model=AuthResp)
+async def login(req: LoginReq):
+    user = await db.users.find_one({\"email\": req.email.lower()})
+    if not user or not verify_password(req.password, user[\"password\"]):
+        raise HTTPException(status_code=401, detail=\"Invalid credentials\")
+    token = create_token(user[\"id\"], user[\"role\"])
+    user.pop(\"password\", None)
+    user.pop(\"_id\", None)
+    return {\"token\": token, \"user\": user}
+
+@api_router.get(\"/auth/me\", response_model=UserPublic)
+async def me(user=Depends(get_current_user)):
+    return user
+
+# ---------------------------------------------------------------------------
+# Admissions / Contact
+# ---------------------------------------------------------------------------
+@api_router.post(\"/admissions\")
+async def create_admission(req: AdmissionReq):
+    doc = req.model_dump()
+    doc[\"id\"] = str(uuid.uuid4())
+    doc[\"status\"] = \"pending\"
+    doc[\"created_at\"] = now_iso()
+    await db.admissions.insert_one(doc)
+    doc.pop(\"_id\", None)
+    return doc
+
+@api_router.get(\"/admissions\", dependencies=[Depends(require_role(\"admin\"))])
+async def list_admissions():
+    items = await db.admissions.find({}, {\"_id\": 0}).sort(\"created_at\", -1).to_list(500)
+    return items
+
+@api_router.post(\"/contact\")
+async def create_contact(req: ContactReq):
+    doc = req.model_dump()
+    doc[\"id\"] = str(uuid.uuid4())
+    doc[\"created_at\"] = now_iso()
+    await db.contacts.insert_one(doc)
+    doc.pop(\"_id\", None)
+    return doc
+
+# ---------------------------------------------------------------------------
+# Events / Notices / Gallery
+# ---------------------------------------------------------------------------
+@api_router.get(\"/events\")
+async def list_events():
+    items = await db.events.find({}, {\"_id\": 0}).sort(\"date\", -1).to_list(200)
+    return items
+
+@api_router.post(\"/events\", dependencies=[Depends(require_role(\"admin\", \"teacher\"))])
+async def create_event(req: EventReq):
+    doc = req.model_dump()
+    doc[\"id\"] = str(uuid.uuid4())
+    doc[\"created_at\"] = now_iso()
+    await db.events.insert_one(doc)
+    doc.pop(\"_id\", None)
+    return doc
+
+@api_router.get(\"/notices\")
+async def list_notices():
+    items = await db.notices.find({}, {\"_id\": 0}).sort(\"created_at\", -1).to_list(100)
+    return items
+
+@api_router.post(\"/notices\", dependencies=[Depends(require_role(\"admin\"))])
+async def create_notice(req: NoticeReq):
+    doc = req.model_dump()
+    doc[\"id\"] = str(uuid.uuid4())
+    doc[\"created_at\"] = now_iso()
+    await db.notices.insert_one(doc)
+    doc.pop(\"_id\", None)
+    return doc
+
+# ---------------------------------------------------------------------------
+# Assignments
+# ---------------------------------------------------------------------------
+@api_router.get(\"/assignments\")
+async def list_assignments(user=Depends(get_current_user)):
+    query = {}
+    if user[\"role\"] == \"student\" and user.get(\"class_name\"):
+        query[\"class_name\"] = user[\"class_name\"]
+    items = await db.assignments.find(query, {\"_id\": 0}).sort(\"due_date\", 1).to_list(200)
+    return items
+
+@api_router.post(\"/assignments\", dependencies=[Depends(require_role(\"teacher\", \"admin\"))])
+async def create_assignment(req: AssignmentReq, user=Depends(get_current_user)):
+    doc = req.model_dump()
+    doc[\"id\"] = str(uuid.uuid4())
+    doc[\"teacher_id\"] = user[\"id\"]
+    doc[\"teacher_name\"] = user[\"name\"]
+    doc[\"created_at\"] = now_iso()
+    await db.assignments.insert_one(doc)
+    doc.pop(\"_id\", None)
+    return doc
+
+# ---------------------------------------------------------------------------
+# Attendance
+# ---------------------------------------------------------------------------
+@api_router.post(\"/attendance\", dependencies=[Depends(require_role(\"teacher\", \"admin\"))])
+async def mark_attendance(req: AttendanceReq):
+    doc = req.model_dump()
+    doc[\"id\"] = str(uuid.uuid4())
+    doc[\"created_at\"] = now_iso()
+    await db.attendance.insert_one(doc)
+    doc.pop(\"_id\", None)
+    return doc
+
+@api_router.get(\"/attendance/me\")
+async def my_attendance(user=Depends(get_current_user)):
+    items = await db.attendance.find({\"student_id\": user[\"id\"]}, {\"_id\": 0}).to_list(500)
+    total = len(items)
+    present = sum(1 for i in items if i[\"status\"] == \"present\")
+    pct = round((present / total) * 100, 1) if total else 0
+    return {\"records\": items, \"total\": total, \"present\": present, \"percentage\": pct}
+
+# ---------------------------------------------------------------------------
+# Admin Stats
+# ---------------------------------------------------------------------------
+@api_router.get(\"/admin/stats\", dependencies=[Depends(require_role(\"admin\"))])
+async def admin_stats():
+    students = await db.users.count_documents({\"role\": \"student\"})
+    teachers = await db.users.count_documents({\"role\": \"teacher\"})
+    events = await db.events.count_documents({})
+    admissions = await db.admissions.count_documents({})
+    revenue_records = await db.fees.find({}, {\"_id\": 0}).to_list(1000)
+    revenue = sum(r.get(\"amount\", 0) for r in revenue_records)
+    return {
+        \"students\": students,
+        \"teachers\": teachers,
+        \"events\": events,
+        \"admissions_pending\": admissions,
+        \"revenue\": revenue,
+        \"monthly_revenue\": [
+            {\"month\": \"Jan\", \"value\": 42000},
+            {\"month\": \"Feb\", \"value\": 58000},
+            {\"month\": \"Mar\", \"value\": 51000},
+            {\"month\": \"Apr\", \"value\": 67000},
+            {\"month\": \"May\", \"value\": 78000},
+            {\"month\": \"Jun\", \"value\": 91000},
+            {\"month\": \"Jul\", \"value\": 84000},
+            {\"month\": \"Aug\", \"value\": 102000},
+        ],
+        \"performance_by_grade\": [
+            {\"grade\": \"9th\", \"score\": 78},
+            {\"grade\": \"10th\", \"score\": 82},
+            {\"grade\": \"11th\", \"score\": 85},
+            {\"grade\": \"12th\", \"score\": 88},
+        ],
+    }
+
+@api_router.get(\"/admin/activity\", dependencies=[Depends(require_role(\"admin\"))])
+async def admin_activity():
+    return [
+        {\"id\": \"1\", \"type\": \"admission\", \"msg\": \"New admission application received from Aanya R.\", \"time\": \"2m ago\"},
+        {\"id\": \"2\", \"type\": \"fee\", \"msg\": \"Fee payment of ₹45,000 received from Class 10-A\", \"time\": \"12m ago\"},
+        {\"id\": \"3\", \"type\": \"event\", \"msg\": \"AI Robotics Workshop scheduled for Friday\", \"time\": \"1h ago\"},
+        {\"id\": \"4\", \"type\": \"teacher\", \"msg\": \"Dr. Mehta uploaded marks for Physics Quiz\", \"time\": \"2h ago\"},
+        {\"id\": \"5\", \"type\": \"notice\", \"msg\": \"Annual sports day notice published\", \"time\": \"5h ago\"},
+    ]
+
+# ---------------------------------------------------------------------------
+# Student Dashboard data
+# ---------------------------------------------------------------------------
+@api_router.get(\"/student/overview\")
+async def student_overview(user=Depends(get_current_user)):
+    if user[\"role\"] != \"student\":
+        # still return helpful demo data
+        pass
+    return {
+        \"attendance_pct\": 92,
+        \"assignments_pending\": 3,
+        \"average_marks\": 87,
+        \"rank\": 4,
+        \"marks_trend\": [
+            {\"month\": \"Apr\", \"math\": 78, \"science\": 82, \"english\": 80},
+            {\"month\": \"May\", \"math\": 84, \"science\": 85, \"english\": 82},
+            {\"month\": \"Jun\", \"math\": 88, \"science\": 87, \"english\": 85},
+            {\"month\": \"Jul\", \"math\": 91, \"science\": 89, \"english\": 88},
+            {\"month\": \"Aug\", \"math\": 93, \"science\": 92, \"english\": 90},
+        ],
+        \"subjects\": [
+            {\"name\": \"Mathematics\", \"progress\": 88, \"color\": \"cyan\"},
+            {\"name\": \"Physics\", \"progress\": 75, \"color\": \"blue\"},
+            {\"name\": \"Chemistry\", \"progress\": 82, \"color\": \"violet\"},
+            {\"name\": \"English\", \"progress\": 91, \"color\": \"emerald\"},
+        ],
+        \"timetable\": [
+            {\"time\": \"08:00\", \"subject\": \"Mathematics\", \"teacher\": \"Dr. Mehta\", \"room\": \"201\"},
+            {\"time\": \"09:00\", \"subject\": \"Physics\", \"teacher\": \"Mr. Khan\", \"room\": \"Lab-3\"},
+            {\"time\": \"10:00\", \"subject\": \"Chemistry\", \"teacher\": \"Ms. Iyer\", \"room\": \"Lab-1\"},
+            {\"time\": \"11:30\", \"subject\": \"English\", \"teacher\": \"Mrs. Davis\", \"room\": \"104\"},
+            {\"time\": \"13:00\", \"subject\": \"AI & Robotics\", \"teacher\": \"Mr. Verma\", \"room\": \"AI-Lab\"},
+        ],
+        \"notifications\": [
+            {\"id\": \"n1\", \"title\": \"Physics Assignment due tomorrow\", \"type\": \"warning\"},
+            {\"id\": \"n2\", \"title\": \"AI Workshop on Friday — RSVP\", \"type\": \"info\"},
+            {\"id\": \"n3\", \"title\": \"Math Quiz scores published\", \"type\": \"success\"},
+        ],
+    }
+
+# ---------------------------------------------------------------------------
+# Teacher Dashboard data
+# ---------------------------------------------------------------------------
+@api_router.get(\"/teacher/overview\")
+async def teacher_overview(user=Depends(get_current_user)):
+    return {
+        \"total_students\": 142,
+        \"active_classes\": 6,
+        \"pending_grading\": 18,
+        \"avg_class_perf\": 81,
+        \"class_performance\": [
+            {\"class\": \"10-A\", \"avg\": 84},
+            {\"class\": \"10-B\", \"avg\": 78},
+            {\"class\": \"11-A\", \"avg\": 88},
+            {\"class\": \"11-B\", \"avg\": 82},
+            {\"class\": \"12-A\", \"avg\": 90},
+        ],
+        \"submissions\": [
+            {\"student\": \"Aanya R.\", \"assignment\": \"Physics Lab Report\", \"status\": \"submitted\"},
+            {\"student\": \"Rahul M.\", \"assignment\": \"Math Worksheet 5\", \"status\": \"pending\"},
+            {\"student\": \"Sara K.\", \"assignment\": \"Physics Lab Report\", \"status\": \"submitted\"},
+            {\"student\": \"Dev P.\", \"assignment\": \"Math Worksheet 5\", \"status\": \"submitted\"},
+        ],
+    }
+
+# ---------------------------------------------------------------------------
+# AI Chat (Claude Sonnet 4.5 via Emergent LLM key)
+# ---------------------------------------------------------------------------
+@api_router.post(\"/ai/chat\")
+async def ai_chat(req: ChatReq):
+    session_id = req.session_id or str(uuid.uuid4())
+    system_msg = (
+        \"You are Nexus AI, the friendly futuristic AI assistant for Nexus Campus — a premium \"
+        \"AI-powered School ERP & Smart Campus platform. You help students, teachers and parents \"
+        \"with study tips, admissions guidance, schedules, school policies, and motivational support. \"
+        \"Keep replies concise (max ~120 words), warm, and visionary. Use emojis sparingly.\"
+    )
+    chat = LlmChat(
+        api_key=EMERGENT_LLM_KEY,
+        session_id=session_id,
+        system_message=system_msg,
+    ).with_model(\"anthropic\", \"claude-sonnet-4-5-20250929\")
+    try:
+        response = await chat.send_message(UserMessage(text=req.message))
+    except Exception as e:
+        logging.exception(\"AI chat failed\")
+        raise HTTPException(status_code=500, detail=f\"AI service error: {str(e)}\")
+
+    # persist
+    await db.ai_messages.insert_one({
+        \"id\": str(uuid.uuid4()),
+        \"session_id\": session_id,
+        \"user_message\": req.message,
+        \"ai_response\": response,
+        \"created_at\": now_iso(),
+    })
+    return {\"session_id\": session_id, \"response\": response}
+
+# ---------------------------------------------------------------------------
+# Health
+# ---------------------------------------------------------------------------
+@api_router.get(\"/\")
+async def root():
+    return {\"message\": \"Nexus Campus API online\", \"version\": \"1.0\"}
+
+@api_router.get(\"/health\")
+async def health():
+    return {\"status\": \"ok\", \"time\": now_iso()}
+
+# ---------------------------------------------------------------------------
+# Seed defaults
+# ---------------------------------------------------------------------------
+DEMO_USERS = [
+    {\"name\": \"Admin Sterling\", \"email\": \"admin@nexus.edu\", \"password\": \"Admin@123\", \"role\": \"admin\"},
+    {\"name\": \"Dr. Priya Mehta\", \"email\": \"teacher@nexus.edu\", \"password\": \"Teacher@123\", \"role\": \"teacher\", \"subject\": \"Physics\"},
+    {\"name\": \"Aanya Rao\", \"email\": \"student@nexus.edu\", \"password\": \"Student@123\", \"role\": \"student\", \"class_name\": \"10-A\"},
+]
+
+DEMO_EVENTS = [
+    {\"title\": \"AI Robotics Hackathon 2026\", \"description\": \"48-hour hackathon to build futuristic AI-powered robots.\", \"date\": \"2026-03-14\", \"location\": \"Innovation Lab\", \"category\": \"Tech\", \"image\": \"https://images.unsplash.com/photo-1742440711276-679934f5b988?crop=entropy&cs=srgb&fm=jpg&q=85&w=1200\"},
+    {\"title\": \"Annual Cultural Fest — Aurora\", \"description\": \"Celebrating art, music & culture across the campus.\", \"date\": \"2026-04-05\", \"location\": \"Main Quad\", \"category\": \"Cultural\", \"image\": \"https://images.unsplash.com/photo-1600903308878-bf5e554ab841?crop=entropy&cs=srgb&fm=jpg&q=85&w=1200\"},
+    {\"title\": \"Inter-school Science Olympiad\", \"description\": \"Compete with top schools across the country.\", \"date\": \"2026-05-20\", \"location\": \"Auditorium\", \"category\": \"Academic\", \"image\": \"https://images.unsplash.com/photo-1616769212339-9eea56b0014e?crop=entropy&cs=srgb&fm=jpg&q=85&w=1200\"},
+    {\"title\": \"Sports Day — Velocity\", \"description\": \"Track, field & e-sports tournaments.\", \"date\": \"2026-06-12\", \"location\": \"Stadium\", \"category\": \"Sports\", \"image\": \"https://images.unsplash.com/photo-1536982679170-1b2277759c92?crop=entropy&cs=srgb&fm=jpg&q=85&w=1200\"},
+]
+
+DEMO_NOTICES = [
+    {\"title\": \"Mid-term exam schedule released\", \"body\": \"Mid-term examinations begin from March 2nd. Check portal for timetable.\", \"priority\": \"high\"},
+    {\"title\": \"AI Learning Platform launched\", \"body\": \"Personalized learning with Nexus AI is now live for all students.\", \"priority\": \"medium\"},
+    {\"title\": \"Library hours extended\", \"body\": \"Library will remain open till 9 PM during exam weeks.\", \"priority\": \"low\"},
+]
+
+async def seed():
+    for u in DEMO_USERS:
+        existing = await db.users.find_one({\"email\": u[\"email\"]})
+        if not existing:
+            doc = {
+                \"id\": str(uuid.uuid4()),
+                \"name\": u[\"name\"],
+                \"email\": u[\"email\"],
+                \"password\": hash_password(u[\"password\"]),
+                \"role\": u[\"role\"],
+                \"avatar\": None,
+                \"class_name\": u.get(\"class_name\"),
+                \"subject\": u.get(\"subject\"),
+                \"created_at\": now_iso(),
+            }
+            await db.users.insert_one(doc)
+            logging.info(f\"Seeded user {u['email']}\")
+
+    if await db.events.count_documents({}) == 0:
+        for e in DEMO_EVENTS:
+            doc = {**e, \"id\": str(uuid.uuid4()), \"created_at\": now_iso()}
+            await db.events.insert_one(doc)
+        logging.info(\"Seeded events\")
+
+    if await db.notices.count_documents({}) == 0:
+        for n in DEMO_NOTICES:
+            doc = {**n, \"id\": str(uuid.uuid4()), \"created_at\": now_iso()}
+            await db.notices.insert_one(doc)
+        logging.info(\"Seeded notices\")
+
+# Register router
+app.include_router(api_router)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_credentials=True,
+    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
+    allow_methods=[\"*\"],
+    allow_headers=[\"*\"],
+)
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
+@app.on_event(\"startup\")
+async def startup():
+    await seed()
+
+@app.on_event(\"shutdown\")
+async def shutdown_db_client():
+    client.close()
+"
+Observation: Overwrite successful: /app/backend/server.py
+
+Action: file_editor create /app/memory/test_credentials.md --file-text "# Test Credentials — Nexus Campus
+
+These accounts are seeded automatically on backend startup. Use them for testing.
+
+| Role    | Email               | Password     |
+|---------|---------------------|--------------|
+| Admin   | admin@nexus.edu     | Admin@123    |
+| Teacher | teacher@nexus.edu   | Teacher@123  |
+| Student | student@nexus.edu   | Student@123  |
+"
+Observation: Overwrite successful: /app/memory/test_credentials.md
+Now build all frontend files in parallel. Tailwind config, index.css, App.css, App.js, all components & pages.
+Action: file_editor create /app/frontend/tailwind.config.js --file-text "/** @type {import('tailwindcss').Config} */
+module.exports = {
+  darkMode: [\"class\"],
+  content: [\"./src/**/*.{js,jsx,ts,tsx}\", \"./public/index.html\"],
+  theme: {
+    extend: {
+      fontFamily: {
+        display: ['\"Cabinet Grotesk\"', '\"Space Grotesk\"', \"Inter\", \"sans-serif\"],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        mono: ['\"JetBrains Mono\"', 'ui-monospace', 'monospace'],
+      },
+      borderRadius: {
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)',
+      },
+      colors: {
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+        card: { DEFAULT: 'hsl(var(--card))', foreground: 'hsl(var(--card-foreground))' },
+        popover: { DEFAULT: 'hsl(var(--popover))', foreground: 'hsl(var(--popover-foreground))' },
+        primary: { DEFAULT: 'hsl(var(--primary))', foreground: 'hsl(var(--primary-foreground))' },
+        secondary: { DEFAULT: 'hsl(var(--secondary))', foreground: 'hsl(var(--secondary-foreground))' },
+        muted: { DEFAULT: 'hsl(var(--muted))', foreground: 'hsl(var(--muted-foreground))' },
+        accent: { DEFAULT: 'hsl(var(--accent))', foreground: 'hsl(var(--accent-foreground))' },
+        destructive: { DEFAULT: 'hsl(var(--destructive))', foreground: 'hsl(var(--destructive-foreground))' },
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
+        chart: {
+          '1': 'hsl(var(--chart-1))', '2': 'hsl(var(--chart-2))',
+          '3': 'hsl(var(--chart-3))', '4': 'hsl(var(--chart-4))',
+          '5': 'hsl(var(--chart-5))',
+        },
+        neon: {
+          cyan: '#00F0FF',
+          blue: '#0055FF',
+          violet: '#8B5CF6',
+          pink: '#F472B6',
+        },
+        ink: {
+          950: '#040914',
+          900: '#070D1C',
+          800: '#0B142A',
+          700: '#111C3A',
+        },
+      },
+      keyframes: {
+        'accordion-down': { from: { height: '0' }, to: { height: 'var(--radix-accordion-content-height)' } },
+        'accordion-up': { from: { height: 'var(--radix-accordion-content-height)' }, to: { height: '0' } },
+        'float': { '0%,100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-14px)' } },
+        'glow-pulse': { '0%,100%': { opacity: '0.6', filter: 'blur(20px)' }, '50%': { opacity: '1', filter: 'blur(28px)' } },
+        'shimmer': { '0%': { backgroundPosition: '-200% 0' }, '100%': { backgroundPosition: '200% 0' } },
+        'grid-fade': { '0%,100%': { opacity: '0.25' }, '50%': { opacity: '0.45' } },
+        'beam': { '0%': { transform: 'translateX(-100%)' }, '100%': { transform: 'translateX(100%)' } },
+      },
+      animation: {
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
+        'float': 'float 6s ease-in-out infinite',
+        'glow-pulse': 'glow-pulse 3s ease-in-out infinite',
+        'shimmer': 'shimmer 2.5s linear infinite',
+        'grid-fade': 'grid-fade 6s ease-in-out infinite',
+        'beam': 'beam 2s linear infinite',
+      },
+      backgroundImage: {
+        'grid-fade': 'linear-gradient(rgba(0,240,255,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(0,240,255,0.07) 1px, transparent 1px)',
+        'noise': \"url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E\\")\",
+      },
+    },
+  },
+  plugins: [require(\"tailwindcss-animate\")],
+};
+"
+Observation: Overwrite successful: /app/frontend/tailwind.config.js
+
+Action: file_editor create /app/frontend/src/index.css --file-text "@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 4%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 6%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 6%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 187 100% 50%;
+    --primary-foreground: 222 47% 4%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 12%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 217 91% 60%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 187 100% 50%;
+    --chart-1: 187 100% 50%;
+    --chart-2: 217 91% 60%;
+    --chart-3: 271 91% 65%;
+    --chart-4: 160 84% 39%;
+    --chart-5: 340 82% 60%;
+    --radius: 0.85rem;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  html { color-scheme: dark; }
+  body {
+    @apply text-foreground antialiased;
+    margin: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    background: radial-gradient(ellipse at top, #0a1230 0%, #040914 45%, #02050d 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  ::selection { background: rgba(0,240,255,0.3); color: #fff; }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/[0.03] backdrop-blur-xl border border-white/10;
+  }
+  .glass-card {
+    @apply bg-slate-900/30 backdrop-blur-xl border border-white/10 rounded-2xl;
+    box-shadow: 0 8px 32px -8px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+  .glass-card:hover {
+    @apply border-cyan-500/40;
+  }
+  .neon-text {
+    background: linear-gradient(90deg, #00F0FF 0%, #5EEAD4 50%, #38BDF8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .neon-border {
+    position: relative;
+    border-radius: 1rem;
+  }
+  .neon-border::before {
+    content: '';
+    position: absolute; inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(0,240,255,0.6), rgba(139,92,246,0.4), rgba(0,85,255,0.6));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude;
+    pointer-events: none;
+  }
+  .btn-neon {
+    @apply relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-semibold text-slate-950 transition-transform;
+    background: linear-gradient(135deg, #00F0FF 0%, #38BDF8 60%, #0055FF 100%);
+    box-shadow: 0 10px 40px -10px rgba(0,240,255,0.6), inset 0 1px 0 rgba(255,255,255,0.4);
+  }
+  .btn-neon:hover { transform: translateY(-1px) scale(1.02); box-shadow: 0 14px 50px -10px rgba(0,240,255,0.8); }
+  .btn-ghost-neon {
+    @apply relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-semibold text-white border border-white/15 bg-white/[0.04] backdrop-blur-md transition-all;
+  }
+  .btn-ghost-neon:hover { @apply border-cyan-400/60 text-cyan-200; box-shadow: 0 0 24px -4px rgba(0,240,255,0.35); }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(0,240,255,0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,240,255,0.07) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  }
+  .scrollbar-thin::-webkit-scrollbar { width: 6px; height: 6px; }
+  .scrollbar-thin::-webkit-scrollbar-thumb { background: rgba(0,240,255,0.25); border-radius: 3px; }
+  .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+
+  .text-balance { text-wrap: balance; }
+
+  .floating-orb {
+    position: absolute; border-radius: 9999px; filter: blur(80px); pointer-events: none;
+  }
+}
+
+/* Beam animation behind active nav */
+.nav-beam {
+  position: absolute;
+  bottom: -1px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00F0FF, transparent);
+  filter: drop-shadow(0 0 6px rgba(0,240,255,0.7));
+}
+
+/* custom cursor */
+.cursor-dot, .cursor-ring {
+  position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+.cursor-dot { width: 6px; height: 6px; background: #00F0FF; border-radius: 9999px; box-shadow: 0 0 12px #00F0FF; }
+.cursor-ring { width: 38px; height: 38px; border: 1px solid rgba(0,240,255,0.45); border-radius: 9999px; backdrop-filter: blur(2px); transition: width 0.18s, height 0.18s, border-color 0.18s; }
+.cursor-ring.hovering { width: 60px; height: 60px; border-color: rgba(0,240,255,0.9); }
+@media (max-width: 768px) { .cursor-dot, .cursor-ring { display: none; } }
+
+/* Hamburger morph */
+.hamburger span { display: block; height: 2px; background: white; border-radius: 2px; transition: transform .35s cubic-bezier(.7,.1,.2,1), opacity .25s, width .35s; }
+.hamburger span:nth-child(1) { width: 22px; }
+.hamburger span:nth-child(2) { width: 16px; margin-top: 6px; }
+.hamburger span:nth-child(3) { width: 22px; margin-top: 6px; }
+.hamburger.open span:nth-child(1) { width: 22px; transform: translateY(8px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { width: 22px; transform: translateY(-8px) rotate(-45deg); }
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.9); opacity: .8; }
+  80%, 100% { transform: scale(1.6); opacity: 0; }
+}
+.pulse-ring { animation: pulse-ring 1.8s cubic-bezier(.215,.61,.355,1) infinite; }
+
+[data-debug-wrapper=\"true\"] { display: contents !important; }
+"
+Observation: Overwrite successful: /app/frontend/src/index.css
+
+Action: file_editor create /app/frontend/src/App.css --file-text "/* App-level overrides (kept minimal — design uses Tailwind + index.css) */
+.App { min-height: 100vh; }
+"
+Observation: Overwrite successful: /app/frontend/src/App.css
+
+Action: file_editor create /app/frontend/src/lib/api.js --file-text "import axios from \"axios\";
+
+export const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+export const API = `${BACKEND_URL}/api`;
+
+export const api = axios.create({ baseURL: API });
+
+api.interceptors.request.use((cfg) => {
+  const t = localStorage.getItem(\"nexus_token\");
+  if (t) cfg.headers.Authorization = `Bearer ${t}`;
+  return cfg;
+});
+
+export default api;
+"
+Observation: Create successful: /app/frontend/src/lib/api.js
+
+
+Action: file_editor create /app/frontend/src/components/CursorGlow.jsx --file-text "import { useEffect, useRef } from \"react\";
+
+export default function CursorGlow() {
+  const dotRef = useRef(null);
+  const ringRef = useRef(null);
+
+  useEffect(() => {
+    const dot = dotRef.current;
+    const ring = ringRef.current;
+    if (!dot || !ring) return;
+    let dx = 0, dy = 0, rx = 0, ry = 0, mx = 0, my = 0;
+
+    const onMove = (e) => { mx = e.clientX; my = e.clientY; };
+    const onOver = (e) => {
+      const target = e.target;
+      if (target.closest(\"a, button, [data-cursor='hover'], [role='button']\")) ring.classList.add(\"hovering\");
+      else ring.classList.remove(\"hovering\");
+    };
+    let raf;
+    const loop = () => {
+      dx += (mx - dx) * 0.6; dy += (my - dy) * 0.6;
+      rx += (mx - rx) * 0.18; ry += (my - ry) * 0.18;
+      dot.style.transform = `translate(${dx}px, ${dy}px) translate(-50%, -50%)`;
+      ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
+      raf = requestAnimationFrame(loop);
+    };
+    window.addEventListener(\"mousemove\", onMove);
+    window.addEventListener(\"mouseover\", onOver);
+    raf = requestAnimationFrame(loop);
+    return () => {
+      window.removeEventListener(\"mousemove\", onMove);
+      window.removeEventListener(\"mouseover\", onOver);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  return (
+    <>
+      <div ref={ringRef} className=\"cursor-ring\" />
+      <div ref={dotRef} className=\"cursor-dot\" />
+    </>
+  );
+}
+"
+Observation: Create successful: /app/frontend/src/components/CursorGlow.jsx
+
+Action: file_editor create /app/frontend/src/components/ParticleField.jsx --file-text "import { Canvas, useFrame } from \"@react-three/fiber\";
+import { useMemo, useRef } from \"react\";
+import * as THREE from \"three\";
+
+function Particles({ count = 2500 }) {
+  const points = useRef();
+  const positions = useMemo(() => {
+    const arr = new Float32Array(count * 3);
+    for (let i = 0; i < count; i++) {
+      const r = 5 + Math.random() * 6;
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.acos(2 * Math.random() - 1);
+      arr[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+      arr[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+      arr[i * 3 + 2] = r * Math.cos(phi);
+    }
+    return arr;
+  }, [count]);
+
+  useFrame((state, delta) => {
+    if (!points.current) return;
+    points.current.rotation.y += delta * 0.05;
+    points.current.rotation.x += delta * 0.015;
+  });
+
+  return (
+    <points ref={points}>
+      <bufferGeometry>
+        <bufferAttribute attach=\"attributes-position\" count={positions.length / 3} array={positions} itemSize={3} />
+      </bufferGeometry>
+      <pointsMaterial size={0.035} color=\"#00F0FF\" transparent opacity={0.85} sizeAttenuation depthWrite={false} blending={THREE.AdditiveBlending} />
+    </points>
+  );
+}
+
+function InnerSphere() {
+  const ref = useRef();
+  useFrame((state, delta) => {
+    if (!ref.current) return;
+    ref.current.rotation.y -= delta * 0.1;
+    ref.current.rotation.x += delta * 0.04;
+  });
+  return (
+    <mesh ref={ref}>
+      <icosahedronGeometry args={[1.6, 1]} />
+      <meshBasicMaterial color=\"#0055FF\" wireframe transparent opacity={0.25} />
+    </mesh>
+  );
+}
+
+export default function ParticleField({ className = \"\" }) {
+  return (
+    <div className={`absolute inset-0 -z-10 ${className}`} data-testid=\"particle-field\">
+      <Canvas camera={{ position: [0, 0, 8], fov: 60 }} dpr={[1, 1.5]} gl={{ antialias: true, alpha: true }}>
+        <ambientLight intensity={0.4} />
+        <Particles count={2200} />
+        <InnerSphere />
+      </Canvas>
+    </div>
+  );
+}
+"
+Observation: Create successful: /app/frontend/src/components/ParticleField.jsx
+
+
+
+Now the navbar, footer, layout, chatbot, dashboard sidebar, and major pages — all in parallel.
+Action: file_editor create /app/frontend/src/components/Navbar.jsx --file-text "import { useEffect, useState } from \"react\";
+import { Link, NavLink, useLocation } from \"react-router-dom\";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from \"framer-motion\";
+import { Sparkles, ChevronRight } from \"lucide-react\";
+import { useAuth } from \"@/context/AuthContext\";
+
+const LINKS = [
+  { to: \"/\", label: \"Home\" },
+  { to: \"/about\", label: \"About\" },
+  { to: \"/academics\", label: \"Academics\" },
+  { to: \"/admissions\", label: \"Admissions\" },
+  { to: \"/ai-learning\", label: \"AI Learning\" },
+  { to: \"/campus-life\", label: \"Campus\" },
+  { to: \"/events\", label: \"Events\" },
+  { to: \"/gallery\", label: \"Gallery\" },
+  { to: \"/contact\", label: \"Contact\" },
+];
+
+export default function Navbar() {
+  const { user, logout } = useAuth();
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [hoverIdx, setHoverIdx] = useState(null);
+  const [progress, setProgress] = useState(0);
+  const location = useLocation();
+  const { scrollYProgress } = useScroll();
+
+  useMotionValueEvent(scrollYProgress, \"change\", (v) => setProgress(v));
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener(\"scroll\", onScroll, { passive: true });
+    return () => window.removeEventListener(\"scroll\", onScroll);
+  }, []);
+
+  useEffect(() => { setOpen(false); }, [location.pathname]);
+
+  const dashboardLink = user?.role === \"admin\" ? \"/admin\" : user?.role === \"teacher\" ? \"/teacher\" : \"/dashboard\";
+
+  return (
+    <>
+      <motion.header
+        data-testid=\"main-navbar\"
+        initial={{ y: -40, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${scrolled ? \"py-2\" : \"py-4\"}`}
+      >
+        <div className={`mx-auto max-w-7xl px-4 transition-all duration-500 ${scrolled ? \"\" : \"\"}`}>
+          <div className={`relative flex items-center justify-between gap-4 rounded-2xl transition-all duration-500 px-4 md:px-6 ${scrolled ? \"bg-slate-950/70 backdrop-blur-2xl border border-white/10 shadow-[0_8px_40px_-8px_rgba(0,240,255,0.18)] py-2.5\" : \"bg-slate-950/20 backdrop-blur-md border border-white/[0.06] py-3\"}`}>
+            {/* Logo */}
+            <Link to=\"/\" className=\"flex items-center gap-2.5 group\" data-testid=\"nav-logo\">
+              <div className=\"relative\">
+                <div className=\"w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-400 via-sky-500 to-blue-700 flex items-center justify-center shadow-[0_0_20px_rgba(0,240,255,0.5)]\">
+                  <Sparkles className=\"w-5 h-5 text-slate-950\" strokeWidth={2.5} />
+                </div>
+                <div className=\"absolute inset-0 rounded-xl bg-cyan-400/40 blur-xl group-hover:bg-cyan-400/60 transition-colors\" />
+              </div>
+              <div className=\"leading-tight\">
+                <div className=\"font-display font-bold text-white tracking-tight text-lg\">NEXUS<span className=\"text-cyan-400\">.</span></div>
+                <div className=\"text-[10px] tracking-[0.18em] text-slate-400 font-mono uppercase\">Campus AI</div>
+              </div>
+            </Link>
+
+            {/* Desktop links */}
+            <nav className=\"hidden lg:flex items-center gap-1 relative\" onMouseLeave={() => setHoverIdx(null)}>
+              {LINKS.map((l, i) => (
+                <NavLink
+                  key={l.to}
+                  to={l.to}
+                  end={l.to === \"/\"}
+                  data-testid={`nav-link-${l.label.toLowerCase().replace(/\s+/g, '-')}`}
+                  onMouseEnter={() => setHoverIdx(i)}
+                  className={({ isActive }) =>
+                    `relative px-3.5 py-2 text-sm font-medium transition-colors rounded-lg ${isActive ? \"text-white\" : \"text-slate-300 hover:text-white\"}`
+                  }
+                >
+                  {({ isActive }) => (
+                    <>
+                      <span className=\"relative z-10\">{l.label}</span>
+                      {hoverIdx === i && (
+                        <motion.span
+                          layoutId=\"nav-hover\"
+                          className=\"absolute inset-0 rounded-lg bg-white/[0.06] border border-white/10\"
+                          transition={{ type: \"spring\", stiffness: 380, damping: 30 }}
+                        />
+                      )}
+                      {isActive && (
+                        <motion.span
+                          layoutId=\"nav-active-beam\"
+                          className=\"nav-beam left-2 right-2\"
+                          transition={{ type: \"spring\", stiffness: 380, damping: 30 }}
+                        />
+                      )}
+                    </>
+                  )}
+                </NavLink>
+              ))}
+            </nav>
+
+            {/* Right CTA */}
+            <div className=\"hidden lg:flex items-center gap-2.5\">
+              {user ? (
+                <>
+                  <Link to={dashboardLink} className=\"btn-ghost-neon !py-2 !px-4 text-sm\" data-testid=\"nav-dashboard-btn\">
+                    {user.name.split(\" \")[0]}
+                    <ChevronRight className=\"w-4 h-4\" />
+                  </Link>
+                  <button onClick={logout} className=\"text-sm text-slate-400 hover:text-white px-3\" data-testid=\"nav-logout-btn\">Logout</button>
+                </>
+              ) : (
+                <>
+                  <Link to=\"/login\" className=\"text-sm font-medium text-slate-300 hover:text-white transition-colors px-3\" data-testid=\"nav-login-btn\">Sign in</Link>
+                  <Link to=\"/signup\" className=\"btn-neon !py-2 !px-5 text-sm\" data-testid=\"nav-signup-btn\">
+                    Get Started
+                  </Link>
+                </>
+              )}
+            </div>
+
+            {/* Mobile hamburger */}
+            <button
+              onClick={() => setOpen((v) => !v)}
+              className={`lg:hidden hamburger ${open ? \"open\" : \"\"} p-2`}
+              data-testid=\"mobile-menu-toggle\"
+              aria-label=\"Toggle menu\"
+            >
+              <span /><span /><span />
+            </button>
+
+            {/* Scroll progress beam */}
+            <div className=\"absolute -bottom-px left-0 right-0 h-px overflow-hidden rounded-b-2xl\">
+              <div
+                className=\"h-full bg-gradient-to-r from-cyan-400 via-sky-400 to-blue-500\"
+                style={{ width: `${progress * 100}%`, boxShadow: \"0 0 12px rgba(0,240,255,0.7)\" }}
+              />
+            </div>
+          </div>
+        </div>
+      </motion.header>
+
+      {/* Mobile fullscreen menu */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className=\"fixed inset-0 z-40 bg-slate-950/85 backdrop-blur-2xl lg:hidden\"
+            data-testid=\"mobile-menu-overlay\"
+          >
+            <div className=\"pt-24 px-6 h-full flex flex-col\">
+              <nav className=\"flex flex-col gap-1\">
+                {LINKS.map((l, i) => (
+                  <motion.div
+                    key={l.to}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.05 * i }}
+                  >
+                    <NavLink
+                      to={l.to}
+                      end={l.to === \"/\"}
+                      className={({ isActive }) =>
+                        `block py-4 text-2xl font-display font-semibold border-b border-white/5 ${isActive ? \"text-cyan-300\" : \"text-white\"}`
+                      }
+                      data-testid={`mobile-nav-${l.label.toLowerCase().replace(/\s+/g, '-')}`}
+                    >
+                      {l.label}
+                    </NavLink>
+                  </motion.div>
+                ))}
+              </nav>
+              <div className=\"mt-auto pb-10 flex flex-col gap-3\">
+                {user ? (
+                  <Link to={dashboardLink} className=\"btn-neon w-full justify-center\" data-testid=\"mobile-dashboard-btn\">Open {user.role} dashboard</Link>
+                ) : (
+                  <>
+                    <Link to=\"/login\" className=\"btn-ghost-neon w-full justify-center\" data-testid=\"mobile-login-btn\">Sign in</Link>
+                    <Link to=\"/signup\" className=\"btn-neon w-full justify-center\" data-testid=\"mobile-signup-btn\">Get Started</Link>
+                  </>
+                )}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
+"
+Observation: Create successful: /app/frontend/src/components/Navbar.jsx
+
+Action: file_editor create /app/frontend/src/components/Footer.jsx --file-text "import { Link } from \"react-router-dom\";
+import { Sparkles, Github, Twitter, Linkedin, Instagram } from \"lucide-react\";
+
+export default function Footer() {
+  return (
+    <footer className=\"relative mt-32 border-t border-white/5\" data-testid=\"site-footer\">
+      <div className=\"absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent\" />
+      <div className=\"absolute -top-32 left-1/2 -translate-x-1/2 w-[680px] h-[680px] bg-cyan-500/10 rounded-full blur-3xl pointer-events-none\" />
+
+      <div className=\"relative mx-auto max-w-7xl px-6 py-16 grid md:grid-cols-4 gap-10\">
+        <div className=\"md:col-span-2\">
+          <Link to=\"/\" className=\"flex items-center gap-2.5 mb-5\">
+            <div className=\"w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-700 flex items-center justify-center\">
+              <Sparkles className=\"w-5 h-5 text-slate-950\" strokeWidth={2.5} />
+            </div>
+            <div>
+              <div className=\"font-display font-bold text-white text-xl\">NEXUS<span className=\"text-cyan-400\">.</span></div>
+              <div className=\"text-[10px] tracking-[0.18em] text-slate-400 font-mono uppercase\">Campus AI</div>
+            </div>
+          </Link>
+          <p className=\"text-slate-400 max-w-md leading-relaxed text-sm\">
+            Transforming education into an intelligent digital future. A unified AI ecosystem for students, teachers, and administrators.
+          </p>
+          <div className=\"flex gap-3 mt-6\">
+            {[Twitter, Linkedin, Github, Instagram].map((Icon, i) => (
+              <a key={i} href=\"#\" className=\"w-10 h-10 rounded-xl glass flex items-center justify-center text-slate-300 hover:text-cyan-300 hover:border-cyan-500/40 transition-all\" aria-label=\"social\">
+                <Icon className=\"w-4 h-4\" />
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <div className=\"font-mono text-xs uppercase tracking-[0.18em] text-cyan-300 mb-4\">Platform</div>
+          <ul className=\"space-y-2.5 text-sm text-slate-400\">
+            <li><Link to=\"/academics\" className=\"hover:text-white transition-colors\">Academics</Link></li>
+            <li><Link to=\"/ai-learning\" className=\"hover:text-white transition-colors\">AI Learning</Link></li>
+            <li><Link to=\"/admissions\" className=\"hover:text-white transition-colors\">Admissions</Link></li>
+            <li><Link to=\"/events\" className=\"hover:text-white transition-colors\">Events</Link></li>
+            <li><Link to=\"/gallery\" className=\"hover:text-white transition-colors\">Gallery</Link></li>
+          </ul>
+        </div>
+
+        <div>
+          <div className=\"font-mono text-xs uppercase tracking-[0.18em] text-cyan-300 mb-4\">Portals</div>
+          <ul className=\"space-y-2.5 text-sm text-slate-400\">
+            <li><Link to=\"/login\" className=\"hover:text-white transition-colors\">Student Portal</Link></li>
+            <li><Link to=\"/login\" className=\"hover:text-white transition-colors\">Teacher Portal</Link></li>
+            <li><Link to=\"/login\" className=\"hover:text-white transition-colors\">Admin Console</Link></li>
+            <li><Link to=\"/contact\" className=\"hover:text-white transition-colors\">Contact</Link></li>
+          </ul>
+        </div>
+      </div>
+
+      <div className=\"relative border-t border-white/5\">
+        <div className=\"mx-auto max-w-7xl px-6 py-5 flex flex-col md:flex-row items-center justify-between gap-3\">
+          <p className=\"text-xs text-slate-500 font-mono\">© 2026 NEXUS CAMPUS. Designed for the next century of education.</p>
+          <p className=\"text-xs text-slate-500 font-mono\">v1.0.0 · status: <span className=\"text-emerald-400\">operational</span></p>
+        </div>
+      </div>
+    </footer>
+  );
+}
+"
+Observation: Create successful: /app/frontend/src/components/Footer.jsx
+
+Action: file_editor create /app/frontend/src/components/AIChatbot.jsx --file-text "import { useEffect, useRef, useState } from \"react\";
+import { motion, AnimatePresence } from \"framer-motion\";
+import { MessageCircle, X, Send, Sparkles } from \"lucide-react\";
+import api from \"@/lib/api\";
+
+export default function AIChatbot() {
+  const [open, setOpen] = useState(false);
+  const [messages, setMessages] = useState([
+    { role: \"ai\", text: \"Hi! I'm Nexus AI ✨ Ask me anything about courses, admissions, schedules, or study tips.\" },
+  ]);
+  const [input, setInput] = useState(\"\");
+  const [loading, setLoading] = useState(false);
+  const [sessionId, setSessionId] = useState(null);
+  const scrollRef = useRef(null);
+
+  useEffect(() => {
+    if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+  }, [messages, open]);
+
+  const send = async (e) => {
+    e?.preventDefault();
+    const msg = input.trim();
+    if (!msg || loading) return;
+    setMessages((m) => [...m, { role: \"user\", text: msg }]);
+    setInput(\"\");
+    setLoading(true);
+    try {
+      const { data } = await api.post(\"/ai/chat\", { message: msg, session_id: sessionId });
+      setSessionId(data.session_id);
+      setMessages((m) => [...m, { role: \"ai\", text: data.response }]);
+    } catch (err) {
+      setMessages((m) => [...m, { role: \"ai\", text: \"Hmm, I couldn't reach the AI core just now. Please try again in a moment.\" }]);
+    } finally { setLoading(false); }
+  };
+
+  return (
+    <>
+      <button
+        onClick={() => setOpen((v) => !v)}
+        data-testid=\"ai-chatbot-toggle\"
+        className=\"fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full flex items-center justify-center group\"
+        aria-label=\"Open AI assistant\"
+      >
+        <span className=\"absolute inset-0 rounded-full bg-cyan-400/40 pulse-ring\" />
+        <span className=\"absolute inset-0 rounded-full bg-cyan-400/30 blur-xl animate-glow-pulse\" />
+        <span className=\"relative w-14 h-14 rounded-full bg-gradient-to-br from-cyan-400 via-sky-500 to-blue-700 flex items-center justify-center shadow-[0_8px_30px_-4px_rgba(0,240,255,0.6)]\">
+          {open ? <X className=\"w-6 h-6 text-slate-950\" /> : <Sparkles className=\"w-6 h-6 text-slate-950\" strokeWidth={2.5} />}
+        </span>
+      </button>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: 30, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 30, scale: 0.96 }}
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            className=\"fixed bottom-24 right-6 z-40 w-[92vw] max-w-[400px] h-[560px] rounded-3xl overflow-hidden glass-card flex flex-col\"
+            data-testid=\"ai-chatbot-panel\"
+          >
+            <div className=\"px-5 py-4 flex items-center gap-3 border-b border-white/10 bg-gradient-to-r from-cyan-500/10 to-blue-600/10\">
+              <div className=\"w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-700 flex items-center justify-center\">
+                <Sparkles className=\"w-4 h-4 text-slate-950\" strokeWidth={2.5} />
+              </div>
+              <div>
+                <div className=\"font-display font-semibold text-white text-sm leading-tight\">Nexus AI</div>
+                <div className=\"text-[11px] text-emerald-400 font-mono flex items-center gap-1.5\">
+                  <span className=\"w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse\" /> online · claude-sonnet-4.5
+                </div>
+              </div>
+            </div>
+
+            <div ref={scrollRef} className=\"flex-1 overflow-y-auto scrollbar-thin px-4 py-4 space-y-3\">
+              {messages.map((m, i) => (
+                <div key={i} className={`flex ${m.role === \"user\" ? \"justify-end\" : \"justify-start\"}`}>
+                  <div className={`max-w-[82%] px-3.5 py-2.5 rounded-2xl text-sm leading-relaxed ${m.role === \"user\" ? \"bg-gradient-to-br from-cyan-400 to-blue-600 text-slate-950 font-medium rounded-br-sm\" : \"bg-white/[0.06] text-slate-200 border border-white/5 rounded-bl-sm\"}`}>
+                    {m.text}
+                  </div>
+                </div>
+              ))}
+              {loading && (
+                <div className=\"flex justify-start\">
+                  <div className=\"px-4 py-3 rounded-2xl bg-white/[0.06] border border-white/5 flex gap-1.5\">
+                    <span className=\"w-1.5 h-1.5 rounded-full bg-cyan-400 animate-bounce\" />
+                    <span className=\"w-1.5 h-1.5 rounded-full bg-cyan-400 animate-bounce\" style={{ animationDelay: \"0.15s\" }} />
+                    <span className=\"w-1.5 h-1.5 rounded-full bg-cyan-400 animate-bounce\" style={{ animationDelay: \"0.3s\" }} />
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <form onSubmit={send} className=\"p-3 border-t border-white/10 flex items-center gap-2\">
+              <input
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder=\"Ask Nexus AI anything...\"
+                data-testid=\"ai-chatbot-input\"
+                className=\"flex-1 bg-white/[0.04] border border-white/10 rounded-full px-4 py-2.5 text-sm text-white placeholder-slate-500 outline-none focus:border-cyan-400/60 focus:bg-white/[0.08]\"
+              />
+              <button
+                type=\"submit\"
+                disabled={loading || !input.trim()}
+                data-testid=\"ai-chatbot-send\"
+                className=\"w-10 h-10 rounded-full bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-slate-950 disabled:opacity-40 transition-transform hover:scale-105\"
+                aria-label=\"Send\"
+              >
+                <Send className=\"w-4 h-4\" />
+              </button>
+            </form>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
+"
+Observation: Create successful: /app/frontend/src/components/AIChatbot.jsx
+
+Action: file_editor create /app/frontend/src/components/PublicLayout.jsx --file-text "import { Outlet } from \"react-router-dom\";
+import Navbar from \"./Navbar\";
+import Footer from \"./Footer\";
+import AIChatbot from \"./AIChatbot\";
+
+export default function PublicLayout() {
+  return (
+    <div className=\"relative min-h-screen\">
+      <div className=\"fixed inset-0 -z-20 grid-bg opacity-50 pointer-events-none\" />
+      <div className=\"fixed inset-0 -z-20 pointer-events-none\">
+        <div className=\"floating-orb bg-cyan-500/10 w-[600px] h-[600px] top-[10%] -left-32 animate-float\" />
+        <div className=\"floating-orb bg-blue-700/15 w-[700px] h-[700px] top-[40%] -right-40 animate-float\" style={{ animationDelay: \"2s\" }} />
+        <div className=\"floating-orb bg-violet-600/10 w-[500px] h-[500px] top-[80%] left-1/3 animate-float\" style={{ animationDelay: \"4s\" }} />
+      </div>
+      <Navbar />
+      <main className=\"pt-24\"><Outlet /></main>
+      <Footer />
+      <AIChatbot />
+    </div>
+  );
+}
+"
+Observation: Create successful: /app/frontend/src/components/PublicLayout.jsx
+
+Action: file_editor create /app/frontend/src/components/ProtectedRoute.jsx --file-text "import { Navigate, useLocation } from \"react-router-dom\";
+import { useAuth } from \"@/context/AuthContext\";
+
+export default function ProtectedRoute({ children, roles }) {
+  const { user, loading } = useAuth();
+  const location = useLocation();
+  if (loading) return <div className=\"min-h-screen flex items-center justify-center text-cyan-300 font-mono text-sm\">initializing nexus core...</div>;
+  if (!user) return <Navigate to=\"/login\" state={{ from: location.pathname }} replace />;
+  if (roles && !roles.includes(user.role)) {
+    const fallback = user.role === \"admin\" ? \"/admin\" : user.role === \"teacher\" ? \"/teacher\" : \"/dashboard\";
+    return <Navigate to={fallback} replace />;
+  }
+  return children;
+}
+"
+Observation: Create successful: /app/frontend/src/components/ProtectedRoute.jsx
+
+Action: file_editor create /app/frontend/src/components/PublicLayout.jsx --file-text "import { Outlet } from \"react-router-dom\";
+import Navbar from \"./Navbar\";
+import Footer from \"./Footer\";
+import AIChatbot from \"./AIChatbot\";
+
+export default function PublicLayout() {
+  return (
+    <div className=\"relative min-h-screen\">
+      <div className=\"fixed inset-0 -z-20 grid-bg opacity-50 pointer-events-none\" />
+      <div className=\"fixed inset-0 -z-20 pointer-events-none\">
+        <div className=\"floating-orb bg-cyan-500/10 w-[600px] h-[600px] top-[10%] -left-32 animate-float\" />
+        <div className=\"floating-orb bg-blue-700/15 w-[700px] h-[700px] top-[40%] -right-40 animate-float\" style={{ animationDelay: \"2s\" }} />
+        <div className=\"floating-orb bg-violet-600/10 w-[500px] h-[500px] top-[80%] left-1/3 animate-float\" style={{ animationDelay: \"4s\" }} />
+      </div>
+      <Navbar />
+      <main className=\"pt-24\"><Outlet /></main>
+      <Footer />
+      <AIChatbot />
+    </div>
+  );
+}
+"
+Observation: Create successful: /app/frontend/src/components/PublicLayout.jsx
+
+
+Action: file_editor create /app/frontend/src/components/PublicLayout.jsx --file-text "import { Outlet } from \"react-router-dom\";
+import Navbar from \"./Navbar\";
+import Footer from \"./Footer\";
+import AIChatbot from \"./AIChatbot\";
+
+export default function PublicLayout() {
+  return (
+    <div className=\"relative min-h-screen\">
+      <div className=\"fixed inset-0 -z-20 grid-bg opacity-50 pointer-events-none\" />
+      <div className=\"fixed inset-0 -z-20 pointer-events-none\">
+        <div className=\"floating-orb bg-cyan-500/10 w-[600px] h-[600px] top-[10%] -left-32 animate-float\" />
+        <div className=\"floating-orb bg-blue-700/15 w-[700px] h-[700px] top-[40%] -right-40 animate-float\" style={{ animationDelay: \"2s\" }} />
+        <div className=\"floating-orb bg-violet-600/10 w-[500px] h-[500px] top-[80%] left-1/3 animate-float\" style={{ animationDelay: \"4s\" }} />
+      </div>
+      <Navbar />
+      <main className=\"pt-24\"><Outlet /></main>
+      <Footer />
+      <AIChatbot />
+    </div>
+  );
+}
+"
+Observation: Create successful: /app/frontend/src/components/PublicLayout.jsx
+
+Action: file_editor create /app/frontend/src/components/ProtectedRoute.jsx --file-text "import { Navigate, useLocation } from \"react-router-dom\";
+import { useAuth } from \"@/context/AuthContext\";
+
+export default function ProtectedRoute({ children, roles }) {
+  const { user, loading } = useAuth();
+  const location = useLocation();
+  if (loading) return <div className=\"min-h-screen flex items-center justify-center text-cyan-300 font-mono text-sm\">initializing nexus core...</div>;
+  if (!user) return <Navigate to=\"/login\" state={{ from: location.pathname }} replace />;
+  if (roles && !roles.includes(user.role)) {
+    const fallback = user.role === \"admin\" ? \"/admin\" : user.role === \"teacher\" ? \"/teacher\" : \"/dashboard\";
+    return <Navigate to={fallback} replace />;
+  }
+  return children;
+}
+"
+Observation: Create successful: /app/frontend/src/components/ProtectedRoute.jsx
+
+Action: file_editor create /app/frontend/src/components/Counter.jsx --file-text "import { useEffect, useState } from \"react\";
+import { motion, useMotionValue, animate } from \"framer-motion\";
+
+export default function Counter({ to = 100, duration = 1.8, suffix = \"\", prefix = \"\" }) {
+  const mv = useMotionValue(0);
+  const [val, setVal] = useState(0);
+
+  useEffect(() => {
+    const controls = animate(mv, to, {
+      duration,
+      ease: [0.22, 1, 0.36, 1],
+      onUpdate: (v) => setVal(v),
+    });
+    return () => controls.stop();
+  }, [to, duration, mv]);
+
+  return (
+    <span>
+      {prefix}{Math.round(val).toLocaleString()}{suffix}
+    </span>
+  );
+}
+"
+Observation: Create successful: /app/frontend/src/components/Counter.jsx
+
+Action: file_editor create /app/frontend/src/components/HoloCard.jsx --file-text "import { useRef } from \"react\";
+import { motion, useMotionValue, useTransform } from \"framer-motion\";
+
+/** Magnetic card with spotlight cursor */
+export default function HoloCard({ children, className = \"\", testid }) {
+  const ref = useRef(null);
+  const mx = useMotionValue(0);
+  const my = useMotionValue(0);
+  const rx = useTransform(my, [-50, 50], [6, -6]);
+  const ry = useTransform(mx, [-50, 50], [-6, 6]);
+
+  const onMove = (e) => {
+    const r = ref.current.getBoundingClientRect();
+    mx.set(e.clientX - r.left - r.width / 2);
+    my.set(e.clientY - r.top - r.height / 2);
+    ref.current.style.setProperty(\"--mx\", `${e.clientX - r.left}px`);
+    ref.current.style.setProperty(\"--my\", `${e.clientY - r.top}px`);
+  };
+  const onLeave = () => { mx.set(0); my.set(0); };
+
+  return (
+    <motion.div
+      ref={ref}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      style={{ rotateX: rx, rotateY: ry, transformPerspective: 1000 }}
+      data-testid={testid}
+      className={`relative glass-card overflow-hidden group ${className}`}
+    >
+      <div
+        aria-hidden
+        className=\"pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300\"
+        style={{ background: \"radial-gradient(360px circle at var(--mx) var(--my), rgba(0,240,255,0.12), transparent 60%)\" }}
+      />
+      {children}
+    </motion.div>
+  );
+}
+"
+Observation: Create successful: /app/frontend/src/components/HoloCard.jsx
+Now build all pages (Home, About, Academics, Admissions, AILearning, CampusLife, Events, Gallery, Contact, Login, Signup) and dashboards (Student/Teacher/Admin with shared DashboardLayout).
+Action: file_editor create /app/frontend/src/pages/Home.jsx --file-text "import { useEffect, useState } from \"react\";
+import { Link } from \"react-router-dom\";
+import { motion } from \"framer-motion\";
+import { ArrowRight, Cpu, Sparkles, Zap, Shield, BarChart3, Users, BookOpen, Brain, Wifi, ChevronRight } from \"lucide-react\";
+import ParticleField from \"@/components/ParticleField\";
+import HoloCard from \"@/components/HoloCard\";
+import Counter from \"@/components/Counter\";
+
+const ROTATE = [\"Intelligent.\", \"Connected.\", \"Limitless.\", \"Effortless.\", \"Inspired.\"];
+
+export default function Home() {
+  const [idx, setIdx] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setIdx((i) => (i + 1) % ROTATE.length), 2400);
+    return () => clearInterval(t);
+  }, []);
+
+  const stats = [
+    { label: \"Active Students\", value: 12450, suffix: \"+\" },
+    { label: \"AI Sessions / Day\", value: 38000, suffix: \"\" },
+    { label: \"Avg. Attendance\", value: 96, suffix: \"%\" },
+    { label: \"Faculty\", value: 320, suffix: \"+\" },
+  ];
+
+  const features = [
+    { icon: Brain, title: \"AI Study Assistant\", desc: \"Personalised tutoring powered by Claude 4.5. Always on, always patient.\", color: \"from-cyan-400 to-blue-600\" },
+    { icon: BarChart3, title: \"Live Analytics\", desc: \"Real-time dashboards for students, teachers and parents.\", color: \"from-violet-400 to-fuchsia-600\" },
+    { icon: Wifi, title: \"Smart Attendance\", desc: \"Auto-mark attendance with predictive risk flags for absenteeism.\", color: \"from-emerald-400 to-cyan-500\" },
+    { icon: Shield, title: \"Role-based Access\", desc: \"Military-grade security across Student, Teacher and Admin portals.\", color: \"from-amber-400 to-orange-500\" },
+    { icon: BookOpen, title: \"Smart Timetable\", desc: \"AI-generated schedules that adapt to student performance.\", color: \"from-pink-400 to-rose-600\" },
+    { icon: Zap, title: \"Real-time Notifications\", desc: \"Notices, results and alerts pushed live across the campus.\", color: \"from-sky-400 to-indigo-600\" },
+  ];
+
+  return (
+    <div data-testid=\"home-page\">
+      {/* HERO */}
+      <section className=\"relative min-h-[88vh] flex items-center overflow-hidden\">
+        <ParticleField />
+        <div className=\"absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-slate-950/40 to-slate-950\" />
+
+        <div className=\"mx-auto max-w-7xl px-6 w-full grid lg:grid-cols-12 gap-10 items-center pt-12 pb-20\">
+          <div className=\"lg:col-span-7\">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
+              <span className=\"inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass text-xs font-mono uppercase tracking-[0.18em] text-cyan-300\">
+                <span className=\"w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse\" />
+                Built for 2026 · powered by AI
+              </span>
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.25, duration: 0.8 }}
+              className=\"font-display mt-6 text-5xl sm:text-6xl lg:text-7xl font-bold text-white tracking-[-0.035em] leading-[1.02] text-balance\"
+            >
+              Education,<br/>
+              made <span className=\"neon-text relative inline-block min-w-[280px] sm:min-w-[360px]\">
+                <motion.span key={idx} initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: -30, opacity: 0 }} className=\"inline-block\">
+                  {ROTATE[idx]}
+                </motion.span>
+              </span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className=\"mt-6 text-lg text-slate-300/90 max-w-xl leading-relaxed\"
+            >
+              Nexus Campus is the AI-native operating system for schools — unifying admissions, classrooms,
+              attendance, analytics and student wellbeing into one cinematic experience.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.55 }}
+              className=\"mt-9 flex flex-wrap items-center gap-3\"
+            >
+              <Link to=\"/admissions\" className=\"btn-neon\" data-testid=\"hero-cta-admissions\">
+                Start Admission
+                <ArrowRight className=\"w-4 h-4\" />
+              </Link>
+              <Link to=\"/ai-learning\" className=\"btn-ghost-neon\" data-testid=\"hero-cta-ai\">
+                <Sparkles className=\"w-4 h-4 text-cyan-300\" />
+                Explore AI Learning
+              </Link>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+              className=\"mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl\"
+            >
+              {stats.map((s, i) => (
+                <div key={i} className=\"glass-card p-4\">
+                  <div className=\"font-display text-2xl font-bold text-white\">
+                    <Counter to={s.value} suffix={s.suffix} />
+                  </div>
+                  <div className=\"text-[11px] text-slate-400 font-mono uppercase tracking-wider mt-1\">{s.label}</div>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Right floating cards */}
+          <div className=\"lg:col-span-5 relative h-[520px] hidden lg:block\">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className=\"absolute top-0 right-0 w-80 glass-card p-5 animate-float\"
+              data-testid=\"hero-card-attendance\"
+            >
+              <div className=\"flex items-center justify-between mb-3\">
+                <div className=\"text-xs font-mono uppercase tracking-[0.18em] text-cyan-300\">Today · live</div>
+                <span className=\"text-[10px] text-emerald-400 font-mono\">●  recording</span>
+              </div>
+              <div className=\"font-display text-3xl font-bold text-white\">96.4%</div>
+              <div className=\"text-sm text-slate-400 mt-1\">Campus attendance</div>
+              <div className=\"mt-4 h-1.5 rounded-full bg-white/5 overflow-hidden\">
+                <motion.div initial={{ width: 0 }} animate={{ width: \"96%\" }} transition={{ delay: 0.8, duration: 1.2 }} className=\"h-full bg-gradient-to-r from-cyan-400 to-blue-500\" />
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7 }}
+              className=\"absolute top-44 left-0 w-72 glass-card p-5 animate-float\"
+              style={{ animationDelay: \"1.2s\" }}
+              data-testid=\"hero-card-ai\"
+            >
+              <div className=\"flex items-center gap-2.5\">
+                <div className=\"w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-700 flex items-center justify-center\">
+                  <Cpu className=\"w-4 h-4 text-slate-950\" />
+                </div>
+                <div className=\"font-display font-semibold text-white\">Nexus AI</div>
+              </div>
+              <div className=\"mt-4 text-sm text-slate-300 leading-relaxed\">
+                \"You're on track for an A+ in Physics. Want a 12-min refresher on optics?\"
+              </div>
+              <button className=\"mt-4 text-xs font-mono text-cyan-300 hover:text-cyan-200 flex items-center gap-1\">Start session <ChevronRight className=\"w-3 h-3\" /></button>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9 }}
+              className=\"absolute bottom-0 right-6 w-64 glass-card p-5 animate-float\"
+              style={{ animationDelay: \"2s\" }}
+              data-testid=\"hero-card-stat\"
+            >
+              <div className=\"text-xs font-mono uppercase tracking-[0.18em] text-cyan-300 mb-2\">Class 10-A · Math</div>
+              <div className=\"font-display text-2xl font-bold text-white\">+18%</div>
+              <div className=\"text-xs text-slate-400\">Improvement after AI tutor</div>
+              <div className=\"mt-3 flex gap-0.5 items-end h-10\">
+                {[30, 45, 38, 52, 60, 72, 88].map((h, i) => (
+                  <div key={i} className=\"flex-1 rounded-sm bg-gradient-to-t from-blue-700 to-cyan-300\" style={{ height: `${h}%` }} />
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </div>
+
+        <div className=\"absolute bottom-6 left-1/2 -translate-x-1/2 text-[10px] font-mono uppercase tracking-[0.3em] text-slate-500\">scroll to explore ↓</div>
+      </section>
+
+      {/* FEATURES */}
+      <section className=\"relative py-28\">
+        <div className=\"mx-auto max-w-7xl px-6\">
+          <div className=\"flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14\">
+            <div>
+              <div className=\"font-mono text-xs uppercase tracking-[0.22em] text-cyan-300 mb-3\">// the platform</div>
+              <h2 className=\"font-display text-4xl sm:text-5xl font-bold text-white tracking-[-0.03em] max-w-2xl\">A single OS for the entire campus.</h2>
+            </div>
+            <p className=\"text-slate-400 max-w-md\">From admissions to alumni — every workflow re-imagined with cinematic motion and real-time intelligence.</p>
+          </div>
+
+          <div className=\"grid md:grid-cols-2 lg:grid-cols-3 gap-5\">
+            {features.map((f, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: \"-80px\" }}
+                transition={{ delay: i * 0.08 }}
+              >
+                <HoloCard className=\"p-6 h-full\" testid={`feature-${i}`}>
+                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${f.color} flex items-center justify-center shadow-lg`}>
+                    <f.icon className=\"w-5 h-5 text-slate-950\" strokeWidth={2.5} />
+                  </div>
+                  <div className=\"font-display text-xl font-semibold text-white mt-5\">{f.title}</div>
+                  <p className=\"text-sm text-slate-400 mt-2 leading-relaxed\">{f.desc}</p>
+                </HoloCard>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className=\"relative py-28\">
+        <div className=\"mx-auto max-w-5xl px-6\">
+          <div className=\"relative glass-card p-10 md:p-16 overflow-hidden text-center\">
+            <div className=\"absolute -top-32 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-cyan-400/15 rounded-full blur-3xl\" />
+            <div className=\"font-mono text-xs uppercase tracking-[0.22em] text-cyan-300 mb-4\">// the future starts here</div>
+            <h2 className=\"font-display text-4xl sm:text-5xl font-bold text-white tracking-[-0.03em] text-balance\">Step into the next-gen campus today.</h2>
+            <p className=\"text-slate-400 max-w-xl mx-auto mt-5\">Join a future where every student is supported by an intelligent ecosystem, every classroom is alive with data, and every administrator has total clarity.</p>
+            <div className=\"mt-8 flex flex-wrap items-center justify-center gap-3\">
+              <Link to=\"/signup\" className=\"btn-neon\" data-testid=\"cta-signup\">Get Started Free</Link>
+              <Link to=\"/contact\" className=\"btn-ghost-neon\" data-testid=\"cta-contact\">Talk to us</Link>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+"
+Observation: Create successful: /app/frontend/src/pages/Home.jsx
+
+Action: file_editor create /app/frontend/src/pages/About.jsx --file-text "import { motion } from \"framer-motion\";
+import HoloCard from \"@/components/HoloCard\";
+import { Award, Target, Eye, Heart } from \"lucide-react\";
+
+export default function About() {
+  const pillars = [
+    { icon: Target, title: \"Mission\", text: \"Empower every learner with an AI-augmented ecosystem that adapts to their pace, passion, and potential.\" },
+    { icon: Eye, title: \"Vision\", text: \"Become the operating system of education — where intelligence, empathy, and innovation converge.\" },
+    { icon: Heart, title: \"Values\", text: \"Curiosity. Inclusion. Mastery. Integrity. Wonder. We build with humans, for humans.\" },
+    { icon: Award, title: \"Excellence\", text: \"World-class faculty, modern labs, and rigorous academics powered by data-driven insights.\" },
+  ];
+
+  return (
+    <div className=\"mx-auto max-w-7xl px-6 py-16\" data-testid=\"about-page\">
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+        <div className=\"font-mono text-xs uppercase tracking-[0.22em] text-cyan-300 mb-3\">// about us</div>
+        <h1 className=\"font-display text-5xl sm:text-6xl font-bold text-white tracking-[-0.035em] max-w-3xl text-balance\">A school designed for the next century of learning.</h1>
+        <p className=\"text-slate-400 mt-6 max-w-2xl leading-relaxed text-lg\">
+          Founded on the belief that education must evolve, Nexus Campus is where Apple-grade design meets AI-grade intelligence.
+          Built by educators, technologists, and futurists who believe the classroom should feel alive.
+        </p>
+      </motion.div>
+
+      <div className=\"grid md:grid-cols-2 gap-5 mt-16\">
+        {pillars.map((p, i) => (
+          <motion.div key={i} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
+            <HoloCard className=\"p-8\" testid={`about-pillar-${i}`}>
+              <div className=\"w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-700 flex items-center justify-center mb-5\">
+                <p.icon className=\"w-5 h-5 text-slate-950\" strokeWidth={2.5} />
+              </div>
+              <div className=\"font-display text-2xl font-semibold text-white\">{p.title}</div>
+              <p className=\"text-slate-400 mt-3 leading-relaxed\">{p.text}</p>
+            </HoloCard>
+          </motion.div>
+        ))}
+      </div>
+
+      <div className=\"mt-20 glass-card p-10 md:p-14 relative overflow-hidden\">
+        <div className=\"absolute -top-32 -right-20 w-[500px] h-[500px] bg-blue-700/20 rounded-full blur-3xl\" />
+        <div className=\"grid md:grid-cols-3 gap-8 relative\">
+          {[
+            { k: \"Founded\", v: \"2019\" },
+            { k: \"Faculty\", v: \"320+\" },
+            { k: \"Programs\", v: \"42\" },
+            { k: \"Alumni Network\", v: \"8,200+\" },
+            { k: \"Awards\", v: \"27\" },
+            { k: \"Campus Acres\", v: \"85\" },
+          ].map((s, i) => (
+            <div key={i}>
+              <div className=\"font-display text-4xl font-bold text-white\">{s.v}</div>
+              <div className=\"text-xs font-mono uppercase tracking-[0.2em] text-cyan-300 mt-2\">{s.k}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+"
+Observation: Create successful: /app/frontend/src/pages/About.jsx
+
+Action: file_editor create /app/frontend/src/pages/Academics.jsx --file-text "import { motion } from \"framer-motion\";
+import HoloCard from \"@/components/HoloCard\";
+import { Atom, Code, Palette, Globe, Calculator, FlaskConical, Music, Dumbbell } from \"lucide-react\";
+
+const PROGRAMS = [
+  { icon: Atom, title: \"Physics & Astronomy\", grade: \"9–12\", students: 312, color: \"from-cyan-400 to-blue-700\" },
+  { icon: Code, title: \"Computer Science & AI\", grade: \"8–12\", students: 480, color: \"from-violet-400 to-fuchsia-600\" },
+  { icon: Calculator, title: \"Pure Mathematics\", grade: \"6–12\", students: 612, color: \"from-amber-400 to-orange-500\" },
+  { icon: FlaskConical, title: \"Chemistry & Biotech\", grade: \"9–12\", students: 244, color: \"from-emerald-400 to-cyan-500\" },
+  { icon: Palette, title: \"Design & Visual Arts\", grade: \"6–12\", students: 198, color: \"from-pink-400 to-rose-600\" },
+  { icon: Globe, title: \"Global Studies\", grade: \"8–12\", students: 276, color: \"from-sky-400 to-indigo-600\" },
+  { icon: Music, title: \"Music & Performance\", grade: \"1–12\", students: 165, color: \"from-fuchsia-400 to-purple-700\" },
+  { icon: Dumbbell, title: \"Sports Science\", grade: \"6–12\", students: 230, color: \"from-lime-400 to-emerald-600\" },
+];
+
+export default function Academics() {
+  return (
+    <div className=\"mx-auto max-w-7xl px-6 py-16\" data-testid=\"academics-page\">
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+        <div className=\"font-mono text-xs uppercase tracking-[0.22em] text-cyan-300 mb-3\">// academics</div>
+        <h1 className=\"font-display text-5xl sm:text-6xl font-bold text-white tracking-[-0.035em] max-w-3xl text-balance\">Programs engineered for tomorrow.</h1>
+        <p className=\"text-slate-400 mt-6 max-w-2xl leading-relaxed text-lg\">
+          Rigorous, interdisciplinary, and continuously adapted by Nexus AI to keep curriculum two years ahead of the global standard.
+        </p>
+      </motion.div>
+
+      <div className=\"grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-14\">
+        {PROGRAMS.map((p, i) => (
+          <motion.div key={i} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: \"-50px\" }} transition={{ delay: i * 0.06 }}>
+            <HoloCard className=\"p-6 h-full\" testid={`program-${i}`}>
+              <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${p.color} flex items-center justify-center shadow-lg`}>
+                <p.icon className=\"w-5 h-5 text-slate-950\" strokeWidth={2.5} />
+              </div>
+              <div className=\"font-display text-lg font-semibold text-white mt-5\">{p.title}</div>
+              <div className=\"flex items-center gap-3 mt-3 text-xs font-mono text-slate-400 uppercase tracking-wider\">
+                <span>Grade {p.grade}</span>
+                <span className=\"w-1 h-1 bg-slate-600 rounded-full\" />
+                <span>{p.students} students</span>
+              </div>
+            </HoloCard>
+          </motion.div>
+        ))}
+      </div>
+
+      <div className=\"mt-20 glass-card p-10 md:p-14 grid md:grid-cols-2 gap-10 items-center relative overflow-hidden\">
+        <div className=\"absolute -top-20 -right-20 w-[400px] h-[400px] bg-cyan-500/15 rounded-full blur-3xl\" />
+        <div className=\"relative\">
+          <div className=\"font-mono text-xs uppercase tracking-[0.22em] text-cyan-300 mb-3\">// adaptive curriculum</div>
+          <h3 className=\"font-display text-3xl font-bold text-white tracking-[-0.03em]\">Curriculum that re-writes itself.</h3>
+          <p className=\"text-slate-400 mt-4 leading-relaxed\">
+            Nexus AI continuously analyses student performance, industry shifts, and global research to recommend syllabus tweaks — reviewed and approved by faculty every quarter.
+          </p>
+        </div>
+        <div className=\"relative grid grid-cols-2 gap-4\">
+          {[
+            { k: \"Curriculum updates / yr\", v: \"48\" },
+            { k: \"AI-generated quizzes\", v: \"1.2M+\" },
+            { k: \"Avg. score uplift\", v: \"+22%\" },
+            { k: \"Subjects in catalogue\", v: \"42\" },
+          ].map((s, i) => (
+            <div key={i} className=\"glass p-4 rounded-xl\">
+              <div className=\"font-display text-2xl font-bold text-white\">{s.v}</div>
+              <div className=\"text-[11px] font-mono uppercase tracking-wider text-slate-400 mt-1\">{s.k}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+"
+Observation: Create successful: /app/frontend/src/pages/Academics.jsx
+
+Action: file_editor create /app/frontend/src/pages/Admissions.jsx --file-text "import { useState } from \"react\";
+import { motion } from \"framer-motion\";
+import { toast, Toaster } from \"sonner\";
+import { Send, Sparkles } from \"lucide-react\";
+import api from \"@/lib/api\";
+
+export default function Admissions() {
+  const [form, setForm] = useState({
+    full_name: \"\", email: \"\", phone: \"\", dob: \"\", grade: \"\", guardian_name: \"\", address: \"\", message: \"\",
+  });
+  const [loading, setLoading] = useState(false);
+  const [done, setDone] = useState(false);
+
+  const submit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      await api.post(\"/admissions\", form);
+      setDone(true);
+      toast.success(\"Application received — we'll be in touch shortly.\");
+    } catch (err) {
+      toast.error(\"Could not submit application. Please try again.\");
+    } finally { setLoading(false); }
+  };
+
+  const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
+  const Input = ({ name, label, type = \"text\", required = true, span = \"\" }) => (
+    <div className={span}>
+      <label className=\"block text-xs font-mono uppercase tracking-[0.18em] text-slate-400 mb-2\">{label}</label>
+      <input
+        type={type} required={required} value={form[name]} onChange={set(name)}
+        data-testid={`admission-${name}`}
+        className=\"w-full bg-white/[0.03] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 outline-none focus:border-cyan-400/60 focus:bg-white/[0.06] transition-all\"
+      />
+    </div>
+  );
+
+  return (
+    <div className=\"mx-auto max-w-5xl px-6 py-16\" data-testid=\"admissions-page\">
+      <Toaster theme=\"dark\" position=\"top-center\" richColors />
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+        <div className=\"font-mono text-xs uppercase tracking-[0.22em] text-cyan-300 mb-3\">// admissions · 2026 intake</div>
+        <h1 className=\"font-display text-5xl sm:text-6xl font-bold text-white tracking-[-0.035em]\">Begin your journey.</h1>
+        <p className=\"text-slate-400 mt-5 max-w-2xl leading-relaxed text-lg\">
+          Submit your application in under 3 minutes. Our admissions AI will pre-screen your profile and a counsellor will follow up within 48 hours.
+        </p>
+      </motion.div>
+
+      {done ? (
+        <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} className=\"glass-card p-12 mt-10 text-center\" data-testid=\"admission-success\">
+          <div className=\"w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-700 mx-auto flex items-center justify-center mb-5\">
+            <Sparkles className=\"w-7 h-7 text-slate-950\" strokeWidth={2.5} />
+          </div>
+          <h2 className=\"font-display text-3xl font-bold text-white\">Application received ✨</h2>
+          <p className=\"text-slate-400 mt-3 max-w-md mx-auto\">A counsellor will reach out within 48 hours. Keep an eye on your inbox for the next steps.</p>
+        </motion.div>
+      ) : (
+        <motion.form
+          initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
+          onSubmit={submit}
+          className=\"glass-card p-8 md:p-10 mt-10 grid sm:grid-cols-2 gap-5\"
+          data-testid=\"admission-form\"
+        >
+          <Input name=\"full_name\" label=\"Full name\" span=\"sm:col-span-2\" />
+          <Input name=\"email\" label=\"Email\" type=\"email\" />
+          <Input name=\"phone\" label=\"Phone\" />
+          <Input name=\"dob\" label=\"Date of birth\" type=\"date\" />
+          <Input name=\"grade\" label=\"Grade / Class applying for\" />
+          <Input name=\"guardian_name\" label=\"Guardian's name\" span=\"sm:col-span-2\" />
+          <Input name=\"address\" label=\"Address\" required={false} span=\"sm:col-span-2\" />
+          <div className=\"sm:col-span-2\">
+            <label className=\"block text-xs font-mono uppercase tracking-[0.18em] text-slate-400 mb-2\">Anything else?</label>
+            <textarea
+              value={form.message} onChange={set(\"message\")} rows={4}
+              data-testid=\"admission-message\"
+              className=\"w-full bg-white/[0.03] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 outline-none focus:border-cyan-400/60 resize-none\"
+            />
+          </div>
+          <div className=\"sm:col-span-2 flex justify-end\">
+            <button type=\"submit\" disabled={loading} className=\"btn-neon disabled:opacity-60\" data-testid=\"admission-submit\">
+              {loading ? \"Sending...\" : \"Submit application\"}
+              <Send className=\"w-4 h-4\" />
+            </button>
+          </div>
+        </motion.form>
+      )}
+    </div>
+  );
+}
+"
+Observation: Create successful: /app/frontend/src/pages/Admissions.jsx
+
+Action: file_editor create /app/frontend/src/pages/AILearning.jsx --file-text "import { motion } from \"framer-motion\";
+import HoloCard from \"@/components/HoloCard\";
+import { Brain, MessageCircle, BookOpen, Mic, Search, BarChart, Sparkles, Activity } from \"lucide-react\";
+
+const FEATURES = [
+  { icon: Brain, title: \"Adaptive Tutoring\", text: \"AI matches your pace — slower on weak topics, faster where you shine.\", testid: \"ai-feat-tutor\" },
+  { icon: MessageCircle, title: \"24/7 Nexus AI Chat\", text: \"Ask Claude-powered Nexus AI anything: doubts, summaries, exam tips.\", testid: \"ai-feat-chat\" },
+  { icon: BookOpen, title: \"Smart Notes\", text: \"Auto-generated revision notes from your handwritten or voice inputs.\", testid: \"ai-feat-notes\" },
+  { icon: Mic, title: \"Voice Assistant\", text: \"Hands-free study sessions and quick concept lookups while you walk.\", testid: \"ai-feat-voice\" },
+  { icon: Search, title: \"Universal Search\", text: \"Search across textbooks, lectures, and notes in milliseconds.\", testid: \"ai-feat-search\" },
+  { icon: BarChart, title: \"Performance Forecast\", text: \"Predicts your scores 6 weeks out and recommends study plans.\", testid: \"ai-feat-forecast\" },
+];
+
+export default function AILearning() {
+  return (
+    <div className=\"mx-auto max-w-7xl px-6 py-16\" data-testid=\"ai-learning-page\">
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+        <div className=\"font-mono text-xs uppercase tracking-[0.22em] text-cyan-300 mb-3\">// nexus ai · learning</div>
+        <h1 className=\"font-display text-5xl sm:text-6xl font-bold text-white tracking-[-0.035em] max-w-3xl text-balance\">An AI tutor on every student's side.</h1>
+        <p className=\"text-slate-400 mt-6 max-w-2xl leading-relaxed text-lg\">
+          Powered by Claude Sonnet 4.5, Nexus AI is calm, patient, brilliant — and never sleeps. It adapts to each child's curiosity.
+        </p>
+      </motion.div>
+
+      {/* showcase */}
+      <div className=\"grid lg:grid-cols-3 gap-5 mt-14\">
+        <div className=\"lg:col-span-2 glass-card p-8 md:p-10 relative overflow-hidden min-h-[360px]\">
+          <div className=\"absolute -top-32 -right-20 w-[500px] h-[500px] bg-cyan-500/15 rounded-full blur-3xl\" />
+          <div className=\"relative\">
+            <div className=\"flex items-center gap-2 mb-5\">
+              <div className=\"w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-700 flex items-center justify-center\"><Sparkles className=\"w-5 h-5 text-slate-950\" /></div>
+              <div>
+                <div className=\"font-display font-semibold text-white\">Nexus AI · live</div>
+                <div className=\"text-[11px] font-mono text-emerald-400\">claude-sonnet-4.5</div>
+              </div>
+            </div>
+            <div className=\"space-y-3 max-w-xl\">
+              <div className=\"glass p-3.5 rounded-2xl rounded-bl-sm text-sm text-slate-200\">Hi! I noticed you struggled with Newton's 3rd law. Want me to walk you through it with a real-life example?</div>
+              <div className=\"bg-gradient-to-br from-cyan-400 to-blue-600 text-slate-950 font-medium p-3.5 rounded-2xl rounded-br-sm text-sm max-w-xs ml-auto\">Yes please, with rockets!</div>
+              <div className=\"glass p-3.5 rounded-2xl rounded-bl-sm text-sm text-slate-200\">Imagine a rocket pushing hot gas downward — that downward push (action) creates an equal and opposite upward thrust (reaction) that launches the rocket. Want a quick 60-sec video?</div>
+            </div>
+          </div>
+        </div>
+
+        <div className=\"glass-card p-8 relative overflow-hidden\">
+          <div className=\"absolute -bottom-32 -right-20 w-[400px] h-[400px] bg-violet-600/15 rounded-full blur-3xl\" />
+          <div className=\"relative\">
+            <div className=\"font-mono text-xs uppercase tracking-[0.22em] text-cyan-300\">// engine</div>
+            <div className=\"mt-3 font-display text-3xl font-bold text-white\">Built on the world's smartest models.</div>
+            <ul className=\"mt-6 space-y-3 text-sm text-slate-300\">
+              {[\"Claude Sonnet 4.5 reasoning\", \"Per-student memory\", \"Strict safety filters\", \"Multi-lingual responses\", \"Live grade syncing\"].map((t, i) => (
+                <li key={i} className=\"flex items-center gap-2.5\"><Activity className=\"w-3.5 h-3.5 text-cyan-400\" />{t}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div className=\"grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-14\">
+        {FEATURES.map((f, i) => (
+          <motion.div key={i} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }}>
+            <HoloCard className=\"p-7 h-full\" testid={f.testid}>
+              <div className=\"w-11 h-11 rounded-xl bg-white/[0.05] border border-white/10 flex items-center justify-center\">
+                <f.icon className=\"w-5 h-5 text-cyan-300\" />
+              </div>
+              <div className=\"font-display text-xl font-semibold text-white mt-5\">{f.title}</div>
+              <p className=\"text-sm text-slate-400 mt-2 leading-relaxed\">{f.text}</p>
+            </HoloCard>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+}
+"
+Observation: Create successful: /app/frontend/src/pages/AILearning.jsx
+
+Action: file_editor create /app/frontend/src/pages/CampusLife.jsx --file-text "import { motion } from \"framer-motion\";
+
+const IMAGES = [
+  \"https://images.unsplash.com/photo-1600903308878-bf5e554ab841?crop=entropy&cs=srgb&fm=jpg&q=85&w=1200\",
+  \"https://images.unsplash.com/photo-1536982679170-1b2277759c92?crop=entropy&cs=srgb&fm=jpg&q=85&w=1200\",
+  \"https://images.unsplash.com/photo-1742440711276-679934f5b988?crop=entropy&cs=srgb&fm=jpg&q=85&w=1200\",
+  \"https://images.unsplash.com/photo-1616769212339-9eea56b0014e?crop=entropy&cs=srgb&fm=jpg&q=85&w=1200\",
+];
+
+const FACETS = [
+  { title: \"Innovation Labs\", text: \"AI, robotics, biotech and design studios open 24/7 to ignite creation.\" },
+  { title: \"Wellness & Sports\", text: \"Olympic-grade tracks, yoga pavilions, climbing walls and esports arenas.\" },
+  { title: \"Maker Spaces\", text: \"CNC, 3D-printing, laser cutters — make anything you can imagine.\" },
+  { title: \"Global Exchange\", text: \"Partnerships with 38 schools across 24 countries for student exchange.\" },
+];
+
+export default function CampusLife() {
+  return (
+    <div className=\"mx-auto max-w-7xl px-6 py-16\" data-testid=\"campus-life-page\">
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+        <div className=\"font-mono text-xs uppercase tracking-[0.22em] text-cyan-300 mb-3\">// campus life</div>
+        <h1 className=\"font-display text-5xl sm:text-6xl font-bold text-white tracking-[-0.035em] max-w-3xl text-balance\">A campus that breathes with you.</h1>
+        <p className=\"text-slate-400 mt-6 max-w-2xl leading-relaxed text-lg\">
+          85 acres of cinematic architecture, smart classrooms, immersive labs and quiet groves — designed for deep focus and joyful play.
+        </p>
+      </motion.div>
+
+      <div className=\"grid md:grid-cols-12 gap-5 mt-14\">
+        <motion.div initial={{ opacity: 0, scale: 0.96 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className=\"md:col-span-7 glass-card overflow-hidden h-[400px] relative\">
+          <img src={IMAGES[0]} alt=\"campus\" className=\"w-full h-full object-cover opacity-80\" />
+          <div className=\"absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent\" />
+          <div className=\"absolute bottom-6 left-6 right-6\">
+            <div className=\"font-mono text-xs uppercase tracking-[0.22em] text-cyan-300 mb-2\">// flagship building</div>
+            <div className=\"font-display text-3xl font-bold text-white\">The Aurora Pavilion</div>
+            <div className=\"text-sm text-slate-300 mt-1\">Where art, science and architecture become one.</div>
+          </div>
+        </motion.div>
+        <motion.div initial={{ opacity: 0, scale: 0.96 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className=\"md:col-span-5 glass-card overflow-hidden h-[400px] relative\">
+          <img src={IMAGES[1]} alt=\"campus\" className=\"w-full h-full object-cover opacity-80\" />
+          <div className=\"absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent\" />
+          <div className=\"absolute bottom-6 left-6 right-6\">
+            <div className=\"font-mono text-xs uppercase tracking-[0.22em] text-cyan-300 mb-2\">// research wing</div>
+            <div className=\"font-display text-2xl font-bold text-white\">The Nexus Tower</div>
+          </div>
+        </motion.div>
+
+        {FACETS.map((f, i) => (
+          <motion.div key={i} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }} className=\"md:col-span-3 glass-card p-6\">
+            <div className=\"font-display text-xl font-semibold text-white\">{f.title}</div>
+            <p className=\"text-sm text-slate-400 mt-2 leading-relaxed\">{f.text}</p>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+}
+"
+Observation: Create successful: /app/frontend/src/pages/CampusLife.jsx
+
+Action: file_editor create /app/frontend/src/pages/Events.jsx --file-text "import { useEffect, useState } from \"react\";
+import { motion } from \"framer-motion\";
+import api from \"@/lib/api\";
+import { Calendar, MapPin } from \"lucide-react\";
+
+export default function Events() {
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    api.get(\"/events\").then((r) => setEvents(r.data)).catch(() => {});
+  }, []);
+
+  return (
+    <div className=\"mx-auto max-w-7xl px-6 py-16\" data-testid=\"events-page\">
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+        <div className=\"font-mono text-xs uppercase tracking-[0.22em] text-cyan-300 mb-3\">// upcoming events</div>
+        <h1 className=\"font-display text-5xl sm:text-6xl font-bold text-white tracking-[-0.035em]\">Always something happening.</h1>
+        <p className=\"text-slate-400 mt-6 max-w-2xl leading-relaxed text-lg\">Hackathons, exhibitions, sports days, festivals — the campus never sleeps.</p>
+      </motion.div>
+
+      <div className=\"grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-14\">
+        {events.map((e, i) => (
+          <motion.article
+            key={e.id || i}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: \"-50px\" }}
+            transition={{ delay: i * 0.08 }}
+            className=\"glass-card overflow-hidden group\"
+            data-testid={`event-card-${i}`}
+          >
+            <div className=\"relative h-48 overflow-hidden\">
+              {e.image && <img src={e.image} alt={e.title} className=\"w-full h-full object-cover transition-transform duration-700 group-hover:scale-110\" />}
+              <div className=\"absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent\" />
+              <span className=\"absolute top-3 left-3 px-2.5 py-1 rounded-full glass text-[10px] font-mono uppercase tracking-[0.18em] text-cyan-300\">{e.category}</span>
+            </div>
+            <div className=\"p-6\">
+              <div className=\"font-display text-xl font-semibold text-white\">{e.title}</div>
+              <p className=\"text-sm text-slate-400 mt-2 line-clamp-2 leading-relaxed\">{e.description}</p>
+              <div className=\"mt-4 flex items-center gap-4 text-xs font-mono text-slate-500\">
+                <span className=\"flex items-center gap-1.5\"><Calendar className=\"w-3.5 h-3.5 text-cyan-400\" />{e.date}</span>
+                <span className=\"flex items-center gap-1.5\"><MapPin className=\"w-3.5 h-3.5 text-cyan-400\" />{e.location}</span>
+              </div>
+            </div>
+          </motion.article>
+        ))}
+        {events.length === 0 && (
+          <div className=\"col-span-full text-center text-slate-500 py-20 font-mono text-sm\">no events scheduled yet</div>
+        )}
+      </div>
+    </div>
+  );
+}
+"
+Observation: Create successful: /app/frontend/src/pages/Events.jsx
+
+Action: file_editor create /app/frontend/src/pages/Events.jsx --file-text "import { useEffect, useState } from \"react\";
+import { motion } from \"framer-motion\";
+import api from \"@/lib/api\";
+import { Calendar, MapPin } from \"lucide-react\";
+
+export default function Events() {
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    api.get(\"/events\").then((r) => setEvents(r.data)).catch(() => {});
+  }, []);
+
+  return (
+    <div className=\"mx-auto max-w-7xl px-6 py-16\" data-testid=\"events-page\">
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+        <div className=\"font-mono text-xs uppercase tracking-[0.22em] text-cyan-300 mb-3\">// upcoming events</div>
+        <h1 className=\"font-display text-5xl sm:text-6xl font-bold text-white tracking-[-0.035em]\">Always something happening.</h1>
+        <p className=\"text-slate-400 mt-6 max-w-2xl leading-relaxed text-lg\">Hackathons, exhibitions, sports days, festivals — the campus never sleeps.</p>
+      </motion.div>
+
+      <div className=\"grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-14\">
+        {events.map((e, i) => (
+          <motion.article
+            key={e.id || i}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: \"-50px\" }}
+            transition={{ delay: i * 0.08 }}
+            className=\"glass-card overflow-hidden group\"
+            data-testid={`event-card-${i}`}
+          >
+            <div className=\"relative h-48 overflow-hidden\">
+              {e.image && <img src={e.image} alt={e.title} className=\"w-full h-full object-cover transition-transform duration-700 group-hover:scale-110\" />}
+              <div className=\"absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent\" />
+              <span className=\"absolute top-3 left-3 px-2.5 py-1 rounded-full glass text-[10px] font-mono uppercase tracking-[0.18em] text-cyan-300\">{e.category}</span>
+            </div>
+            <div className=\"p-6\">
+              <div className=\"font-display text-xl font-semibold text-white\">{e.title}</div>
+              <p className=\"text-sm text-slate-400 mt-2 line-clamp-2 leading-relaxed\">{e.description}</p>
+              <div className=\"mt-4 flex items-center gap-4 text-xs font-mono text-slate-500\">
+                <span className=\"flex items-center gap-1.5\"><Calendar className=\"w-3.5 h-3.5 text-cyan-400\" />{e.date}</span>
+                <span className=\"flex items-center gap-1.5\"><MapPin className=\"w-3.5 h-3.5 text-cyan-400\" />{e.location}</span>
+              </div>
+            </div>
+          </motion.article>
+        ))}
+        {events.length === 0 && (
+          <div className=\"col-span-full text-center text-slate-500 py-20 font-mono text-sm\">no events scheduled yet</div>
+        )}
+      </div>
+    </div>
+  );
+}
+"
+Observation: Create successful: /app/frontend/src/pages/Events.jsx
+
+Action: file_editor create /app/frontend/src/pages/Contact.jsx --file-text "import { useState } from \"react\";
+import { motion } from \"framer-motion\";
+import { toast, Toaster } from \"sonner\";
+import { Send, Mail, Phone, MapPin } from \"lucide-react\";
+import api from \"@/lib/api\";
+
+export default function Contact() {
+  const [form, setForm] = useState({ name: \"\", email: \"\", subject: \"\", message: \"\" });
+  const [loading, setLoading] = useState(false);
+
+  const submit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      await api.post(\"/contact\", form);
+      toast.success(\"Message sent — we'll respond within 24 hours.\");
+      setForm({ name: \"\", email: \"\", subject: \"\", message: \"\" });
+    } catch { toast.error(\"Could not send. Please try again.\"); }
+    finally { setLoading(false); }
+  };
+
+  return (
+    <div className=\"mx-auto max-w-7xl px-6 py-16\" data-testid=\"contact-page\">
+      <Toaster theme=\"dark\" position=\"top-center\" richColors />
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+        <div className=\"font-mono text-xs uppercase tracking-[0.22em] text-cyan-300 mb-3\">// contact</div>
+        <h1 className=\"font-display text-5xl sm:text-6xl font-bold text-white tracking-[-0.035em]\">Let's talk.</h1>
+        <p className=\"text-slate-400 mt-6 max-w-2xl leading-relaxed text-lg\">Questions about admissions, partnerships, or campus tours? Reach out — we usually reply within a day.</p>
+      </motion.div>
+
+      <div className=\"grid lg:grid-cols-5 gap-6 mt-14\">
+        <div className=\"lg:col-span-2 space-y-4\">
+          {[
+            { icon: Mail, label: \"Email\", value: \"hello@nexus.edu\" },
+            { icon: Phone, label: \"Phone\", value: \"+91 80 4000 1234\" },
+            { icon: MapPin, label: \"Campus\", value: \"85 Aurora Drive, Bengaluru, IN\" },
+          ].map((c, i) => (
+            <motion.div key={i} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className=\"glass-card p-6 flex items-center gap-4\">
+              <div className=\"w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-700 flex items-center justify-center\"><c.icon className=\"w-5 h-5 text-slate-950\" strokeWidth={2.5} /></div>
+              <div>
+                <div className=\"text-[11px] font-mono uppercase tracking-[0.18em] text-cyan-300\">{c.label}</div>
+                <div className=\"text-white font-medium mt-0.5\">{c.value}</div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <motion.form initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} onSubmit={submit} className=\"lg:col-span-3 glass-card p-8 space-y-4\" data-testid=\"contact-form\">
+          {[
+            [\"name\", \"Your name\", \"text\"],
+            [\"email\", \"Email\", \"email\"],
+            [\"subject\", \"Subject\", \"text\"],
+          ].map(([k, l, t]) => (
+            <div key={k}>
+              <label className=\"block text-xs font-mono uppercase tracking-[0.18em] text-slate-400 mb-2\">{l}</label>
+              <input
+                type={t} required value={form[k]} onChange={(e) => setForm({ ...form, [k]: e.target.value })}
+                data-testid={`contact-${k}`}
+                className=\"w-full bg-white/[0.03] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 outline-none focus:border-cyan-400/60 focus:bg-white/[0.06] transition-all\"
+              />
+            </div>
+          ))}
+          <div>
+            <label className=\"block text-xs font-mono uppercase tracking-[0.18em] text-slate-400 mb-2\">Message</label>
+            <textarea
+              required value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} rows={5}
+              data-testid=\"contact-message\"
+              className=\"w-full bg-white/[0.03] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 outline-none focus:border-cyan-400/60 resize-none\"
+            />
+          </div>
+          <div className=\"flex justify-end\">
+            <button type=\"submit\" disabled={loading} className=\"btn-neon disabled:opacity-60\" data-testid=\"contact-submit\">
+              {loading ? \"Sending...\" : \"Send message\"}
+              <Send className=\"w-4 h-4\" />
+            </button>
+          </div>
+        </motion.form>
+      </div>
+    </div>
+  );
+}
+"
+Observation: Create successful: /app/frontend/src/pages/Contact.jsx
+Now Login, Signup, and the three dashboards + a shared DashboardLayout.
+Action: file_editor create /app/frontend/src/pages/Login.jsx --file-text "import { useState } from \"react\";
+import { Link, useNavigate, useLocation } from \"react-router-dom\";
+import { motion } from \"framer-motion\";
+import { toast, Toaster } from \"sonner\";
+import { Sparkles } from \"lucide-react\";
+import ParticleField from \"@/components/ParticleField\";
+import { useAuth } from \"@/context/AuthContext\";
+
+const DEMO = [
+  { role: \"Admin\", email: \"admin@nexus.edu\", pwd: \"Admin@123\" },
+  { role: \"Teacher\", email: \"teacher@nexus.edu\", pwd: \"Teacher@123\" },
+  { role: \"Student\", email: \"student@nexus.edu\", pwd: \"Student@123\" },
+];
+
+export default function Login() {
+  const { login } = useAuth();
+  const nav = useNavigate();
+  const loc = useLocation();
+  const [email, setEmail] = useState(\"\");
+  const [password, setPassword] = useState(\"\");
+  const [loading, setLoading] = useState(false);
+
+  const submit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const user = await login(email, password);
+      toast.success(`Welcome back, ${user.name.split(\" \")[0]}`);
+      const next = loc.state?.from || (user.role === \"admin\" ? \"/admin\" : user.role === \"teacher\" ? \"/teacher\" : \"/dashboard\");
+      nav(next, { replace: true });
+    } catch (err) {
+      toast.error(err.response?.data?.detail || \"Login failed\");
+    } finally { setLoading(false); }
+  };
+
+  const fill = (d) => { setEmail(d.email); setPassword(d.pwd); };
+
+  return (
+    <div className=\"relative min-h-screen flex items-center justify-center p-6\" data-testid=\"login-page\">
+      <Toaster theme=\"dark\" position=\"top-center\" richColors />
+      <ParticleField />
+      <div className=\"absolute inset-0 -z-10 bg-gradient-to-b from-slate-950/50 via-transparent to-slate-950\" />
+
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className=\"w-full max-w-md\">
+        <Link to=\"/\" className=\"flex items-center gap-2.5 mb-8 justify-center\">
+          <div className=\"w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-700 flex items-center justify-center\"><Sparkles className=\"w-5 h-5 text-slate-950\" strokeWidth={2.5} /></div>
+          <div className=\"font-display font-bold text-white text-xl\">NEXUS<span className=\"text-cyan-400\">.</span></div>
+        </Link>
+
+        <div className=\"glass-card p-8\">
+          <h1 className=\"font-display text-3xl font-bold text-white tracking-tight\">Welcome back</h1>
+          <p className=\"text-slate-400 mt-2 text-sm\">Sign in to access your portal</p>
+
+          <form onSubmit={submit} className=\"space-y-4 mt-6\">
+            <div>
+              <label className=\"block text-xs font-mono uppercase tracking-[0.18em] text-slate-400 mb-2\">Email</label>
+              <input type=\"email\" required value={email} onChange={(e) => setEmail(e.target.value)} data-testid=\"login-email\" className=\"w-full bg-white/[0.03] border border-white/10 rounded-xl px-4 py-3 text-white outline-none focus:border-cyan-400/60\" />
+            </div>
+            <div>
+              <label className=\"block text-xs font-mono uppercase tracking-[0.18em] text-slate-400 mb-2\">Password</label>
+              <input type=\"password\" required value={password} onChange={(e) => setPassword(e.target.value)} data-testid=\"login-password\" className=\"w-full bg-white/[0.03] border border-white/10 rounded-xl px-4 py-3 text-white outline-none focus:border-cyan-400/60\" />
+            </div>
+            <button type=\"submit\" disabled={loading} className=\"btn-neon w-full justify-center disabled:opacity-60\" data-testid=\"login-submit\">
+              {loading ? \"Signing in...\" : \"Sign in\"}
+            </button>
+          </form>
+
+          <div className=\"mt-6 pt-6 border-t border-white/10\">
+            <div className=\"text-[11px] font-mono uppercase tracking-[0.18em] text-cyan-300 mb-3\">demo accounts</div>
+            <div className=\"grid grid-cols-3 gap-2\">
+              {DEMO.map((d) => (
+                <button key={d.role} type=\"button\" onClick={() => fill(d)} className=\"text-xs glass py-2 rounded-lg hover:border-cyan-500/40 text-slate-200\" data-testid={`demo-${d.role.toLowerCase()}`}>{d.role}</button>
+              ))}
+            </div>
+          </div>
+
+          <div className=\"mt-6 text-center text-sm text-slate-400\">
+            New to Nexus? <Link to=\"/signup\" className=\"text-cyan-300 hover:underline\">Create account</Link>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+"
+Observation: Create successful: /app/frontend/src/pages/Login.jsx
+
+Action: file_editor create /app/frontend/src/pages/Signup.jsx --file-text "import { useState } from \"react\";
+import { Link, useNavigate } from \"react-router-dom\";
+import { motion } from \"framer-motion\";
+import { toast, Toaster } from \"sonner\";
+import { Sparkles } from \"lucide-react\";
+import ParticleField from \"@/components/ParticleField\";
+import { useAuth } from \"@/context/AuthContext\";
+
+export default function Signup() {
+  const { signup } = useAuth();
+  const nav = useNavigate();
+  const [form, setForm] = useState({ name: \"\", email: \"\", password: \"\", role: \"student\", class_name: \"\" });
+  const [loading, setLoading] = useState(false);
+
+  const submit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const user = await signup(form);
+      toast.success(`Welcome, ${user.name.split(\" \")[0]}!`);
+      nav(user.role === \"admin\" ? \"/admin\" : user.role === \"teacher\" ? \"/teacher\" : \"/dashboard\", { replace: true });
+    } catch (err) {
+      toast.error(err.response?.data?.detail || \"Signup failed\");
+    } finally { setLoading(false); }
+  };
+
+  return (
+    <div className=\"relative min-h-screen flex items-center justify-center p-6 py-20\" data-testid=\"signup-page\">
+      <Toaster theme=\"dark\" position=\"top-center\" richColors />
+      <ParticleField />
+      <div className=\"absolute inset-0 -z-10 bg-gradient-to-b from-slate-950/50 via-transparent to-slate-950\" />
+
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className=\"w-full max-w-md\">
+        <Link to=\"/\" className=\"flex items-center gap-2.5 mb-8 justify-center\">
+          <div className=\"w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-700 flex items-center justify-center\"><Sparkles className=\"w-5 h-5 text-slate-950\" strokeWidth={2.5} /></div>
+          <div className=\"font-display font-bold text-white text-xl\">NEXUS<span className=\"text-cyan-400\">.</span></div>
+        </Link>
+
+        <div className=\"glass-card p-8\">
+          <h1 className=\"font-display text-3xl font-bold text-white tracking-tight\">Create your account</h1>
+          <p className=\"text-slate-400 mt-2 text-sm\">Join the future of education in seconds.</p>
+
+          <form onSubmit={submit} className=\"space-y-4 mt-6\">
+            <div>
+              <label className=\"block text-xs font-mono uppercase tracking-[0.18em] text-slate-400 mb-2\">Full name</label>
+              <input required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} data-testid=\"signup-name\" className=\"w-full bg-white/[0.03] border border-white/10 rounded-xl px-4 py-3 text-white outline-none focus:border-cyan-400/60\" />
+            </div>
+            <div>
+              <label className=\"block text-xs font-mono uppercase tracking-[0.18em] text-slate-400 mb-2\">Email</label>
+              <input type=\"email\" required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} data-testid=\"signup-email\" className=\"w-full bg-white/[0.03] border border-white/10 rounded-xl px-4 py-3 text-white outline-none focus:border-cyan-400/60\" />
+            </div>
+            <div>
+              <label className=\"block text-xs font-mono uppercase tracking-[0.18em] text-slate-400 mb-2\">Password</label>
+              <input type=\"password\" required minLength={6} value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} data-testid=\"signup-password\" className=\"w-full bg-white/[0.03] border border-white/10 rounded-xl px-4 py-3 text-white outline-none focus:border-cyan-400/60\" />
+            </div>
+            <div>
+              <label className=\"block text-xs font-mono uppercase tracking-[0.18em] text-slate-400 mb-2\">I am a</label>
+              <div className=\"grid grid-cols-3 gap-2\">
+                {[\"student\", \"teacher\", \"admin\"].map((r) => (
+                  <button type=\"button\" key={r} onClick={() => setForm({ ...form, role: r })} data-testid={`role-${r}`}
+                    className={`py-2.5 rounded-xl text-sm font-medium capitalize transition-all border ${form.role === r ? \"bg-gradient-to-br from-cyan-400 to-blue-600 text-slate-950 border-transparent shadow-[0_0_20px_-4px_rgba(0,240,255,0.5)]\" : \"bg-white/[0.03] border-white/10 text-slate-300 hover:border-cyan-400/40\"}`}>
+                    {r}
+                  </button>
+                ))}
+              </div>
+            </div>
+            {form.role === \"student\" && (
+              <div>
+                <label className=\"block text-xs font-mono uppercase tracking-[0.18em] text-slate-400 mb-2\">Class</label>
+                <input value={form.class_name} onChange={(e) => setForm({ ...form, class_name: e.target.value })} placeholder=\"e.g. 10-A\" data-testid=\"signup-class\" className=\"w-full bg-white/[0.03] border border-white/10 rounded-xl px-4 py-3 text-white outline-none focus:border-cyan-400/60\" />
+              </div>
+            )}
+
+            <button type=\"submit\" disabled={loading} className=\"btn-neon w-full justify-center disabled:opacity-60\" data-testid=\"signup-submit\">
+              {loading ? \"Creating...\" : \"Create account\"}
+            </button>
+          </form>
+
+          <div className=\"mt-6 text-center text-sm text-slate-400\">
+            Already have an account? <Link to=\"/login\" className=\"text-cyan-300 hover:underline\">Sign in</Link>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+"
+Observation: Create successful: /app/frontend/src/pages/Signup.jsx
+
+Action: file_editor create /app/frontend/src/components/DashboardLayout.jsx --file-text "import { Link, NavLink, useNavigate, Outlet } from \"react-router-dom\";
+import { useAuth } from \"@/context/AuthContext\";
+import { LayoutDashboard, BookOpen, Calendar, BarChart3, Users, FileText, Bell, LogOut, Sparkles, Settings } from \"lucide-react\";
+
+const MENU = {
+  student: [
+    { to: \"/dashboard\", label: \"Overview\", icon: LayoutDashboard, end: true },
+    { to: \"/dashboard/courses\", label: \"Courses\", icon: BookOpen },
+    { to: \"/dashboard/timetable\", label: \"Timetable\", icon: Calendar },
+    { to: \"/dashboard/results\", label: \"Results\", icon: BarChart3 },
+  ],
+  teacher: [
+    { to: \"/teacher\", label: \"Overview\", icon: LayoutDashboard, end: true },
+    { to: \"/teacher/classes\", label: \"Classes\", icon: Users },
+    { to: \"/teacher/assignments\", label: \"Assignments\", icon: FileText },
+    { to: \"/teacher/grades\", label: \"Grades\", icon: BarChart3 },
+  ],
+  admin: [
+    { to: \"/admin\", label: \"Overview\", icon: LayoutDashboard, end: true },
+    { to: \"/admin/students\", label: \"Students\", icon: Users },
+    { to: \"/admin/events\", label: \"Events\", icon: Calendar },
+    { to: \"/admin/notices\", label: \"Notices\", icon: Bell },
+    { to: \"/admin/settings\", label: \"Settings\", icon: Settings },
+  ],
+};
+
+export default function DashboardLayout({ role }) {
+  const { user, logout } = useAuth();
+  const nav = useNavigate();
+  const menu = MENU[role] || [];
+
+  const handleLogout = () => { logout(); nav(\"/\", { replace: true }); };
+
+  return (
+    <div className=\"relative min-h-screen flex\" data-testid={`${role}-layout`}>
+      <div className=\"fixed inset-0 -z-20 grid-bg opacity-40 pointer-events-none\" />
+      <div className=\"fixed inset-0 -z-20 pointer-events-none\">
+        <div className=\"floating-orb bg-cyan-500/10 w-[600px] h-[600px] top-[5%] -left-32 animate-float\" />
+        <div className=\"floating-orb bg-violet-600/10 w-[500px] h-[500px] bottom-[10%] -right-40 animate-float\" style={{ animationDelay: \"3s\" }} />
+      </div>
+
+      {/* Sidebar */}
+      <aside className=\"hidden lg:flex flex-col w-64 fixed top-4 bottom-4 left-4 glass-card p-5 z-30\" data-testid={`${role}-sidebar`}>
+        <Link to=\"/\" className=\"flex items-center gap-2.5 mb-8\">
+          <div className=\"w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-700 flex items-center justify-center\"><Sparkles className=\"w-4 h-4 text-slate-950\" strokeWidth={2.5} /></div>
+          <div>
+            <div className=\"font-display font-bold text-white\">NEXUS<span className=\"text-cyan-400\">.</span></div>
+            <div className=\"text-[10px] tracking-[0.18em] text-slate-400 font-mono uppercase\">{role} OS</div>
+          </div>
+        </Link>
+
+        <nav className=\"flex-1 space-y-1\">
+          {menu.map((m) => (
+            <NavLink
+              key={m.to}
+              to={m.to}
+              end={m.end}
+              data-testid={`sidebar-${m.label.toLowerCase()}`}
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm transition-all ${isActive ? \"bg-gradient-to-r from-cyan-500/15 to-blue-700/10 text-white border border-cyan-500/30\" : \"text-slate-400 hover:text-white hover:bg-white/[0.04]\"}`
+              }
+            >
+              <m.icon className=\"w-4 h-4\" />
+              <span>{m.label}</span>
+            </NavLink>
+          ))}
+        </nav>
+
+        <div className=\"pt-4 border-t border-white/5\">
+          <div className=\"px-3 py-3 flex items-center gap-3\">
+            <div className=\"w-9 h-9 rounded-full bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-slate-950 font-bold text-sm\">{user?.name?.[0]}</div>
+            <div className=\"flex-1 min-w-0\">
+              <div className=\"text-sm text-white truncate\">{user?.name}</div>
+              <div className=\"text-[10px] font-mono uppercase tracking-wider text-cyan-300\">{user?.role}</div>
+            </div>
+          </div>
+          <button onClick={handleLogout} data-testid=\"dashboard-logout\" className=\"w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm text-slate-400 hover:text-rose-300 hover:bg-rose-500/5 transition-all\">
+            <LogOut className=\"w-4 h-4\" /> Logout
+          </button>
+        </div>
+      </aside>
+
+      {/* Mobile top bar */}
+      <div className=\"lg:hidden fixed top-0 inset-x-0 z-30 bg-slate-950/80 backdrop-blur-xl border-b border-white/10 px-4 py-3 flex items-center justify-between\">
+        <Link to=\"/\" className=\"flex items-center gap-2\">
+          <div className=\"w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400 to-blue-700 flex items-center justify-center\"><Sparkles className=\"w-4 h-4 text-slate-950\" strokeWidth={2.5} /></div>
+          <div className=\"font-display font-bold text-white text-sm\">NEXUS<span className=\"text-cyan-400\">.</span> <span className=\"text-cyan-300 uppercase text-[10px] font-mono\">{role}</span></div>
+        </Link>
+        <button onClick={handleLogout} className=\"text-xs text-slate-400\" data-testid=\"mobile-logout\">Logout</button>
+      </div>
+
+      <main className=\"flex-1 lg:ml-[17rem] p-4 lg:p-8 pt-20 lg:pt-8\" data-testid={`${role}-main`}>
+        <Outlet />
+      </main>
+    </div>
+  );
+}
+"
+Observation: Create successful: /app/frontend/src/components/DashboardLayout.jsx
+
+Action: file_editor create /app/frontend/src/pages/dashboards/StudentDashboard.jsx --file-text "import { useEffect, useState } from \"react\";
+import { motion } from \"framer-motion\";
+import { LineChart, Line, AreaChart, Area, ResponsiveContainer, XAxis, YAxis, Tooltip, CartesianGrid } from \"recharts\";
+import { TrendingUp, BookCheck, Trophy, Sparkles, Bell, CheckCircle2, AlertCircle, Info } from \"lucide-react\";
+import Counter from \"@/components/Counter\";
+import HoloCard from \"@/components/HoloCard\";
+import api from \"@/lib/api\";
+import { useAuth } from \"@/context/AuthContext\";
+
+const ICONS = { success: CheckCircle2, warning: AlertCircle, info: Info };
+
+export default function StudentDashboard() {
+  const { user } = useAuth();
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    api.get(\"/student/overview\").then((r) => setData(r.data)).catch(() => {});
+  }, []);
+
+  if (!data) return <div className=\"text-cyan-300 font-mono text-sm\">loading...</div>;
+
+  return (
+    <div className=\"space-y-6\" data-testid=\"student-dashboard\">
+      <div>
+        <div className=\"font-mono text-xs uppercase tracking-[0.22em] text-cyan-300\">// student overview</div>
+        <h1 className=\"font-display text-4xl font-bold text-white tracking-tight mt-2\">Hello, {user?.name?.split(\" \")[0]} 👋</h1>
+        <p className=\"text-slate-400 text-sm mt-1\">Here's your campus pulse for today.</p>
+      </div>
+
+      <div className=\"grid sm:grid-cols-2 lg:grid-cols-4 gap-4\">
+        {[
+          { label: \"Attendance\", value: data.attendance_pct, suffix: \"%\", icon: BookCheck, color: \"from-cyan-400 to-blue-600\" },
+          { label: \"Average Marks\", value: data.average_marks, suffix: \"%\", icon: TrendingUp, color: \"from-violet-400 to-fuchsia-600\" },
+          { label: \"Pending Tasks\", value: data.assignments_pending, suffix: \"\", icon: Sparkles, color: \"from-amber-400 to-orange-500\" },
+          { label: \"Class Rank\", value: data.rank, suffix: \"\", icon: Trophy, color: \"from-emerald-400 to-cyan-500\" },
+        ].map((s, i) => (
+          <motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.07 }}>
+            <HoloCard className=\"p-5\" testid={`stat-${s.label.replace(/\s+/g, '-').toLowerCase()}`}>
+              <div className=\"flex items-center justify-between\">
+                <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${s.color} flex items-center justify-center`}><s.icon className=\"w-4 h-4 text-slate-950\" strokeWidth={2.5} /></div>
+                <div className=\"text-[10px] font-mono uppercase tracking-wider text-emerald-400\">+ this week</div>
+              </div>
+              <div className=\"font-display text-3xl font-bold text-white mt-4\"><Counter to={s.value} suffix={s.suffix} /></div>
+              <div className=\"text-xs text-slate-400 mt-1\">{s.label}</div>
+            </HoloCard>
+          </motion.div>
+        ))}
+      </div>
+
+      <div className=\"grid lg:grid-cols-3 gap-5\">
+        <div className=\"lg:col-span-2 glass-card p-6\" data-testid=\"marks-chart\">
+          <div className=\"flex items-center justify-between mb-4\">
+            <div>
+              <div className=\"font-mono text-xs uppercase tracking-[0.18em] text-cyan-300\">// performance · last 5 months</div>
+              <div className=\"font-display text-xl font-semibold text-white mt-1\">Marks trend</div>
+            </div>
+          </div>
+          <ResponsiveContainer width=\"100%\" height={240}>
+            <AreaChart data={data.marks_trend} margin={{ left: -20 }}>
+              <defs>
+                <linearGradient id=\"g1\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop offset=\"0%\" stopColor=\"#00F0FF\" stopOpacity={0.5} /><stop offset=\"100%\" stopColor=\"#00F0FF\" stopOpacity={0} /></linearGradient>
+                <linearGradient id=\"g2\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop offset=\"0%\" stopColor=\"#8B5CF6\" stopOpacity={0.4} /><stop offset=\"100%\" stopColor=\"#8B5CF6\" stopOpacity={0} /></linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray=\"3 3\" stroke=\"rgba(255,255,255,0.06)\" />
+              <XAxis dataKey=\"month\" stroke=\"#64748b\" fontSize={11} />
+              <YAxis stroke=\"#64748b\" fontSize={11} />
+              <Tooltip contentStyle={{ background: \"#0b142a\", border: \"1px solid rgba(0,240,255,0.3)\", borderRadius: 8, fontSize: 12 }} />
+              <Area type=\"monotone\" dataKey=\"math\" stroke=\"#00F0FF\" fill=\"url(#g1)\" strokeWidth={2} />
+              <Area type=\"monotone\" dataKey=\"science\" stroke=\"#8B5CF6\" fill=\"url(#g2)\" strokeWidth={2} />
+              <Area type=\"monotone\" dataKey=\"english\" stroke=\"#38BDF8\" strokeWidth={2} fill=\"none\" />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+
+        <div className=\"glass-card p-6\" data-testid=\"subjects-progress\">
+          <div className=\"font-mono text-xs uppercase tracking-[0.18em] text-cyan-300\">// subjects</div>
+          <div className=\"font-display text-xl font-semibold text-white mt-1 mb-5\">Progress</div>
+          <div className=\"space-y-4\">
+            {data.subjects.map((s, i) => (
+              <div key={i}>
+                <div className=\"flex items-center justify-between text-sm\">
+                  <span className=\"text-white\">{s.name}</span>
+                  <span className=\"font-mono text-cyan-300\">{s.progress}%</span>
+                </div>
+                <div className=\"h-1.5 rounded-full bg-white/5 overflow-hidden mt-2\">
+                  <motion.div initial={{ width: 0 }} animate={{ width: `${s.progress}%` }} transition={{ delay: 0.2 + i * 0.1, duration: 1 }} className=\"h-full bg-gradient-to-r from-cyan-400 to-blue-500\" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className=\"grid lg:grid-cols-3 gap-5\">
+        <div className=\"lg:col-span-2 glass-card p-6\" data-testid=\"timetable\">
+          <div className=\"flex items-center justify-between mb-4\">
+            <div>
+              <div className=\"font-mono text-xs uppercase tracking-[0.18em] text-cyan-300\">// today · class 10-A</div>
+              <div className=\"font-display text-xl font-semibold text-white mt-1\">Timetable</div>
+            </div>
+          </div>
+          <div className=\"space-y-2\">
+            {data.timetable.map((t, i) => (
+              <div key={i} className=\"flex items-center gap-4 p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:border-cyan-500/30 transition-colors\">
+                <div className=\"font-mono text-sm text-cyan-300 w-14\">{t.time}</div>
+                <div className=\"flex-1\">
+                  <div className=\"text-white text-sm font-medium\">{t.subject}</div>
+                  <div className=\"text-xs text-slate-500\">{t.teacher} · Room {t.room}</div>
+                </div>
+                <div className=\"w-2 h-2 rounded-full bg-emerald-400\" />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className=\"glass-card p-6\" data-testid=\"notifications\">
+          <div className=\"flex items-center justify-between mb-4\">
+            <div>
+              <div className=\"font-mono text-xs uppercase tracking-[0.18em] text-cyan-300\">// alerts</div>
+              <div className=\"font-display text-xl font-semibold text-white mt-1 flex items-center gap-2\"><Bell className=\"w-5 h-5 text-cyan-300\" /> Notifications</div>
+            </div>
+          </div>
+          <div className=\"space-y-3\">
+            {data.notifications.map((n, i) => {
+              const Icon = ICONS[n.type] || Info;
+              return (
+                <div key={i} className=\"flex gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/5\">
+                  <Icon className={`w-4 h-4 flex-shrink-0 mt-0.5 ${n.type === \"warning\" ? \"text-amber-300\" : n.type === \"success\" ? \"text-emerald-300\" : \"text-cyan-300\"}`} />
+                  <div className=\"text-sm text-slate-200\">{n.title}</div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+"
+Observation: Create successful: /app/frontend/src/pages/dashboards/StudentDashboard.jsx
+
+Action: file_editor create /app/frontend/src/pages/dashboards/TeacherDashboard.jsx --file-text "import { useEffect, useState } from \"react\";
+import { motion } from \"framer-motion\";
+import { BarChart, Bar, ResponsiveContainer, XAxis, YAxis, Tooltip, CartesianGrid } from \"recharts\";
+import { Users, BookOpen, ClipboardCheck, TrendingUp } from \"lucide-react\";
+import Counter from \"@/components/Counter\";
+import HoloCard from \"@/components/HoloCard\";
+import api from \"@/lib/api\";
+import { useAuth } from \"@/context/AuthContext\";
+
+export default function TeacherDashboard() {
+  const { user } = useAuth();
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    api.get(\"/teacher/overview\").then((r) => setData(r.data)).catch(() => {});
+  }, []);
+
+  if (!data) return <div className=\"text-cyan-300 font-mono text-sm\">loading...</div>;
+
+  return (
+    <div className=\"space-y-6\" data-testid=\"teacher-dashboard\">
+      <div>
+        <div className=\"font-mono text-xs uppercase tracking-[0.22em] text-cyan-300\">// teacher overview</div>
+        <h1 className=\"font-display text-4xl font-bold text-white tracking-tight mt-2\">Welcome, {user?.name?.split(\" \").slice(-1)[0]}</h1>
+        <p className=\"text-slate-400 text-sm mt-1\">Your classes today, all in one cockpit.</p>
+      </div>
+
+      <div className=\"grid sm:grid-cols-2 lg:grid-cols-4 gap-4\">
+        {[
+          { label: \"Total Students\", value: data.total_students, icon: Users, color: \"from-cyan-400 to-blue-600\" },
+          { label: \"Active Classes\", value: data.active_classes, icon: BookOpen, color: \"from-violet-400 to-fuchsia-600\" },
+          { label: \"Pending Grading\", value: data.pending_grading, icon: ClipboardCheck, color: \"from-amber-400 to-orange-500\" },
+          { label: \"Avg. Performance\", value: data.avg_class_perf, suffix: \"%\", icon: TrendingUp, color: \"from-emerald-400 to-cyan-500\" },
+        ].map((s, i) => (
+          <motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.07 }}>
+            <HoloCard className=\"p-5\" testid={`tstat-${i}`}>
+              <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${s.color} flex items-center justify-center`}><s.icon className=\"w-4 h-4 text-slate-950\" strokeWidth={2.5} /></div>
+              <div className=\"font-display text-3xl font-bold text-white mt-4\"><Counter to={s.value} suffix={s.suffix || \"\"} /></div>
+              <div className=\"text-xs text-slate-400 mt-1\">{s.label}</div>
+            </HoloCard>
+          </motion.div>
+        ))}
+      </div>
+
+      <div className=\"grid lg:grid-cols-3 gap-5\">
+        <div className=\"lg:col-span-2 glass-card p-6\" data-testid=\"class-performance\">
+          <div className=\"font-mono text-xs uppercase tracking-[0.18em] text-cyan-300\">// performance</div>
+          <div className=\"font-display text-xl font-semibold text-white mt-1 mb-4\">Class averages</div>
+          <ResponsiveContainer width=\"100%\" height={260}>
+            <BarChart data={data.class_performance} margin={{ left: -20 }}>
+              <defs>
+                <linearGradient id=\"bar1\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop offset=\"0%\" stopColor=\"#00F0FF\" /><stop offset=\"100%\" stopColor=\"#0055FF\" /></linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray=\"3 3\" stroke=\"rgba(255,255,255,0.06)\" />
+              <XAxis dataKey=\"class\" stroke=\"#64748b\" fontSize={11} />
+              <YAxis stroke=\"#64748b\" fontSize={11} />
+              <Tooltip contentStyle={{ background: \"#0b142a\", border: \"1px solid rgba(0,240,255,0.3)\", borderRadius: 8, fontSize: 12 }} />
+              <Bar dataKey=\"avg\" fill=\"url(#bar1)\" radius={[6, 6, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+
+        <div className=\"glass-card p-6\" data-testid=\"recent-submissions\">
+          <div className=\"font-mono text-xs uppercase tracking-[0.18em] text-cyan-300\">// activity</div>
+          <div className=\"font-display text-xl font-semibold text-white mt-1 mb-4\">Recent submissions</div>
+          <div className=\"space-y-3\">
+            {data.submissions.map((s, i) => (
+              <div key={i} className=\"flex items-center justify-between gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/5\">
+                <div className=\"flex-1 min-w-0\">
+                  <div className=\"text-sm text-white truncate\">{s.student}</div>
+                  <div className=\"text-xs text-slate-500 truncate\">{s.assignment}</div>
+                </div>
+                <span className={`text-[10px] font-mono uppercase tracking-wider px-2 py-1 rounded-full ${s.status === \"submitted\" ? \"bg-emerald-500/15 text-emerald-300\" : \"bg-amber-500/15 text-amber-300\"}`}>{s.status}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+"
+Observation: Create successful: /app/frontend/src/pages/dashboards/TeacherDashboard.jsx
+
+Action: file_editor create /app/frontend/src/pages/dashboards/AdminDashboard.jsx --file-text "import { useEffect, useState } from \"react\";
+import { motion } from \"framer-motion\";
+import { AreaChart, Area, BarChart, Bar, ResponsiveContainer, XAxis, YAxis, Tooltip, CartesianGrid } from \"recharts\";
+import { Users, GraduationCap, IndianRupee, CalendarRange, Activity } from \"lucide-react\";
+import Counter from \"@/components/Counter\";
+import HoloCard from \"@/components/HoloCard\";
+import api from \"@/lib/api\";
+
+const TYPE_COLORS = {
+  admission: \"text-cyan-300\", fee: \"text-emerald-300\", event: \"text-violet-300\", teacher: \"text-amber-300\", notice: \"text-pink-300\",
+};
+
+export default function AdminDashboard() {
+  const [stats, setStats] = useState(null);
+  const [activity, setActivity] = useState([]);
+
+  useEffect(() => {
+    Promise.all([api.get(\"/admin/stats\"), api.get(\"/admin/activity\")])
+      .then(([s, a]) => { setStats(s.data); setActivity(a.data); })
+      .catch(() => {});
+  }, []);
+
+  if (!stats) return <div className=\"text-cyan-300 font-mono text-sm\">loading...</div>;
+
+  return (
+    <div className=\"space-y-6\" data-testid=\"admin-dashboard\">
+      <div>
+        <div className=\"font-mono text-xs uppercase tracking-[0.22em] text-cyan-300\">// admin · command center</div>
+        <h1 className=\"font-display text-4xl font-bold text-white tracking-tight mt-2\">Campus pulse</h1>
+        <p className=\"text-slate-400 text-sm mt-1\">Live snapshot of everything happening across Nexus Campus.</p>
+      </div>
+
+      <div className=\"grid sm:grid-cols-2 lg:grid-cols-5 gap-4\">
+        {[
+          { label: \"Students\", value: stats.students, icon: GraduationCap, color: \"from-cyan-400 to-blue-600\" },
+          { label: \"Teachers\", value: stats.teachers, icon: Users, color: \"from-violet-400 to-fuchsia-600\" },
+          { label: \"Events\", value: stats.events, icon: CalendarRange, color: \"from-amber-400 to-orange-500\" },
+          { label: \"Admissions\", value: stats.admissions_pending, icon: Activity, color: \"from-emerald-400 to-cyan-500\" },
+          { label: \"Revenue (₹)\", value: 642000, prefix: \"₹\", icon: IndianRupee, color: \"from-pink-400 to-rose-600\" },
+        ].map((s, i) => (
+          <motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.06 }}>
+            <HoloCard className=\"p-5\" testid={`admin-stat-${i}`}>
+              <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${s.color} flex items-center justify-center`}><s.icon className=\"w-4 h-4 text-slate-950\" strokeWidth={2.5} /></div>
+              <div className=\"font-display text-2xl font-bold text-white mt-4\"><Counter to={s.value} prefix={s.prefix || \"\"} /></div>
+              <div className=\"text-xs text-slate-400 mt-1\">{s.label}</div>
+            </HoloCard>
+          </motion.div>
+        ))}
+      </div>
+
+      <div className=\"grid lg:grid-cols-3 gap-5\">
+        <div className=\"lg:col-span-2 glass-card p-6\" data-testid=\"revenue-chart\">
+          <div className=\"font-mono text-xs uppercase tracking-[0.18em] text-cyan-300\">// revenue · ytd</div>
+          <div className=\"font-display text-xl font-semibold text-white mt-1 mb-4\">Monthly revenue</div>
+          <ResponsiveContainer width=\"100%\" height={260}>
+            <AreaChart data={stats.monthly_revenue} margin={{ left: -10 }}>
+              <defs>
+                <linearGradient id=\"rev\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop offset=\"0%\" stopColor=\"#00F0FF\" stopOpacity={0.6} /><stop offset=\"100%\" stopColor=\"#0055FF\" stopOpacity={0} /></linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray=\"3 3\" stroke=\"rgba(255,255,255,0.06)\" />
+              <XAxis dataKey=\"month\" stroke=\"#64748b\" fontSize={11} />
+              <YAxis stroke=\"#64748b\" fontSize={11} />
+              <Tooltip contentStyle={{ background: \"#0b142a\", border: \"1px solid rgba(0,240,255,0.3)\", borderRadius: 8, fontSize: 12 }} />
+              <Area type=\"monotone\" dataKey=\"value\" stroke=\"#00F0FF\" fill=\"url(#rev)\" strokeWidth={2.5} />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+
+        <div className=\"glass-card p-6\" data-testid=\"grade-perf\">
+          <div className=\"font-mono text-xs uppercase tracking-[0.18em] text-cyan-300\">// performance</div>
+          <div className=\"font-display text-xl font-semibold text-white mt-1 mb-4\">Performance by grade</div>
+          <ResponsiveContainer width=\"100%\" height={260}>
+            <BarChart data={stats.performance_by_grade} margin={{ left: -20 }}>
+              <defs>
+                <linearGradient id=\"b2\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop offset=\"0%\" stopColor=\"#8B5CF6\" /><stop offset=\"100%\" stopColor=\"#0055FF\" /></linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray=\"3 3\" stroke=\"rgba(255,255,255,0.06)\" />
+              <XAxis dataKey=\"grade\" stroke=\"#64748b\" fontSize={11} />
+              <YAxis stroke=\"#64748b\" fontSize={11} />
+              <Tooltip contentStyle={{ background: \"#0b142a\", border: \"1px solid rgba(0,240,255,0.3)\", borderRadius: 8, fontSize: 12 }} />
+              <Bar dataKey=\"score\" fill=\"url(#b2)\" radius={[6, 6, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      <div className=\"glass-card p-6\" data-testid=\"activity-feed\">
+        <div className=\"flex items-center justify-between mb-5\">
+          <div>
+            <div className=\"font-mono text-xs uppercase tracking-[0.18em] text-cyan-300\">// live activity</div>
+            <div className=\"font-display text-xl font-semibold text-white mt-1\">Recent events</div>
+          </div>
+          <span className=\"flex items-center gap-2 text-[11px] font-mono text-emerald-400\"><span className=\"w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse\" />streaming</span>
+        </div>
+        <div className=\"space-y-2.5\">
+          {activity.map((a) => (
+            <div key={a.id} className=\"flex items-center gap-4 p-3.5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-cyan-500/30 transition-colors\">
+              <span className={`text-[10px] font-mono uppercase tracking-[0.18em] ${TYPE_COLORS[a.type] || \"text-cyan-300\"} w-20`}>{a.type}</span>
+              <span className=\"text-sm text-slate-200 flex-1\">{a.msg}</span>
+              <span className=\"text-xs text-slate-500 font-mono\">{a.time}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+"
+Observation: Create successful: /app/frontend/src/pages/dashboards/AdminDashboard.jsx
+
+Now wire up App.js with routing, and ensure craco aliases work (looks like @ is configured since template uses `@/App.css`). Let me check craco config quickly.
+Action: Globbing pattern craco.config.* in path /app/frontend
+Observation: /app/frontend/craco.config.js
+
+Action: file_editor view /app/frontend/craco.config.js
+Observation: [Showing lines 1-101 of 101 total] /app/frontend/craco.config.js:
+1|// craco.config.js
+2|const path = require("path");
+3|require("dotenv").config();
+4|
+5|// Check if we're in development/preview mode (not production build)
+6|// Craco sets NODE_ENV=development for start, NODE_ENV=production for build
+7|const isDevServer = process.env.NODE_ENV !== "production";
+8|
+9|// Environment variable overrides
+10|const config = {
+11|  enableHealthCheck: process.env.ENABLE_HEALTH_CHECK === "true",
+12|};
+13|
+14|// Conditionally load health check modules only if enabled
+15|let WebpackHealthPlugin;
+16|let setupHealthEndpoints;
+17|let healthPluginInstance;
+18|
+19|if (config.enableHealthCheck) {
+20|  WebpackHealthPlugin = require("./plugins/health-check/webpack-health-plugin");
+21|  setupHealthEndpoints = require("./plugins/health-check/health-endpoints");
+22|  healthPluginInstance = new WebpackHealthPlugin();
+23|}
+24|
+25|let webpackConfig = {
+26|  eslint: {
+27|    configure: {
+28|      extends: ["plugin:react-hooks/recommended"],
+29|      rules: {
+30|        "react-hooks/rules-of-hooks": "error",
+31|        "react-hooks/exhaustive-deps": "warn",
+32|      },
+33|    },
+34|  },
+35|  webpack: {
+36|    alias: {
+37|      '@': path.resolve(__dirname, 'src'),
+38|    },
+39|    configure: (webpackConfig) => {
+40|
+41|      // Add ignored patterns to reduce watched directories
+42|        webpackConfig.watchOptions = {
+43|          ...webpackConfig.watchOptions,
+44|          ignored: [
+45|            '**/node_modules/**',
+46|            '**/.git/**',
+47|            '**/build/**',
+48|            '**/dist/**',
+49|            '**/coverage/**',
+50|            '**/public/**',
+51|        ],
+52|      };
+53|
+54|      // Add health check plugin to webpack if enabled
+55|      if (config.enableHealthCheck && healthPluginInstance) {
+56|        webpackConfig.plugins.push(healthPluginInstance);
+57|      }
+58|      return webpackConfig;
+59|    },
+60|  },
+61|};
+62|
+63|webpackConfig.devServer = (devServerConfig) => {
+64|  // Add health check endpoints if enabled
+65|  if (config.enableHealthCheck && setupHealthEndpoints && healthPluginInstance) {
+66|    const originalSetupMiddlewares = devServerConfig.setupMiddlewares;
+67|
+68|    devServerConfig.setupMiddlewares = (middlewares, devServer) => {
+69|      // Call original setup if exists
+70|      if (originalSetupMiddlewares) {
+71|        middlewares = originalSetupMiddlewares(middlewares, devServer);
+72|      }
+73|
+74|      // Setup health endpoints
+75|      setupHealthEndpoints(devServer, healthPluginInstance);
+76|
+77|      return middlewares;
+78|    };
+79|  }
+80|
+81|  return devServerConfig;
+82|};
+83|
+84|// Wrap with visual edits (automatically adds babel plugin, dev server, and overlay in dev mode)
+85|if (isDevServer) {
+86|  try {
+87|    const { withVisualEdits } = require("@emergentbase/visual-edits/craco");
+88|    webpackConfig = withVisualEdits(webpackConfig);
+89|  } catch (err) {
+90|    if (err.code === 'MODULE_NOT_FOUND' && err.message.includes('@emergentbase/visual-edits/craco')) {
+91|      console.warn(
+92|        "[visual-edits] @emergentbase/visual-edits not installed — visual editing disabled."
+93|      );
+94|    } else {
+95|      throw err;
+96|    }
+97|  }
+98|}
+99|
+100|module.exports = webpackConfig;
+101|
+[End of file]
+`@` alias is configured. Now wire App.js and a CursorGlow wrapper. Also need to add `<AuthProvider>`.
+Action: file_editor create /app/frontend/src/App.js --file-text "import { BrowserRouter, Routes, Route } from \"react-router-dom\";
+import \"@/App.css\";
+
+import { AuthProvider } from \"@/context/AuthContext\";
+import PublicLayout from \"@/components/PublicLayout\";
+import DashboardLayout from \"@/components/DashboardLayout\";
+import ProtectedRoute from \"@/components/ProtectedRoute\";
+import CursorGlow from \"@/components/CursorGlow\";
+
+import Home from \"@/pages/Home\";
+import About from \"@/pages/About\";
+import Academics from \"@/pages/Academics\";
+import Admissions from \"@/pages/Admissions\";
+import AILearning from \"@/pages/AILearning\";
+import CampusLife from \"@/pages/CampusLife\";
+import Events from \"@/pages/Events\";
+import Gallery from \"@/pages/Gallery\";
+import Contact from \"@/pages/Contact\";
+import Login from \"@/pages/Login\";
+import Signup from \"@/pages/Signup\";
+import StudentDashboard from \"@/pages/dashboards/StudentDashboard\";
+import TeacherDashboard from \"@/pages/dashboards/TeacherDashboard\";
+import AdminDashboard from \"@/pages/dashboards/AdminDashboard\";
+
+function App() {
+  return (
+    <AuthProvider>
+      <BrowserRouter>
+        <CursorGlow />
+        <Routes>
+          <Route element={<PublicLayout />}>
+            <Route path=\"/\" element={<Home />} />
+            <Route path=\"/about\" element={<About />} />
+            <Route path=\"/academics\" element={<Academics />} />
+            <Route path=\"/admissions\" element={<Admissions />} />
+            <Route path=\"/ai-learning\" element={<AILearning />} />
+            <Route path=\"/campus-life\" element={<CampusLife />} />
+            <Route path=\"/events\" element={<Events />} />
+            <Route path=\"/gallery\" element={<Gallery />} />
+            <Route path=\"/contact\" element={<Contact />} />
+          </Route>
+
+          <Route path=\"/login\" element={<Login />} />
+          <Route path=\"/signup\" element={<Signup />} />
+
+          <Route
+            element={
+              <ProtectedRoute roles={[\"student\"]}>
+                <DashboardLayout role=\"student\" />
+              </ProtectedRoute>
+            }
+          >
+            <Route path=\"/dashboard\" element={<StudentDashboard />} />
+            <Route path=\"/dashboard/courses\" element={<StudentDashboard />} />
+            <Route path=\"/dashboard/timetable\" element={<StudentDashboard />} />
+            <Route path=\"/dashboard/results\" element={<StudentDashboard />} />
+          </Route>
+
+          <Route
+            element={
+              <ProtectedRoute roles={[\"teacher\"]}>
+                <DashboardLayout role=\"teacher\" />
+              </ProtectedRoute>
+            }
+          >
+            <Route path=\"/teacher\" element={<TeacherDashboard />} />
+            <Route path=\"/teacher/classes\" element={<TeacherDashboard />} />
+            <Route path=\"/teacher/assignments\" element={<TeacherDashboard />} />
+            <Route path=\"/teacher/grades\" element={<TeacherDashboard />} />
+          </Route>
+
+          <Route
+            element={
+              <ProtectedRoute roles={[\"admin\"]}>
+                <DashboardLayout role=\"admin\" />
+              </ProtectedRoute>
+            }
+          >
+            <Route path=\"/admin\" element={<AdminDashboard />} />
+            <Route path=\"/admin/students\" element={<AdminDashboard />} />
+            <Route path=\"/admin/events\" element={<AdminDashboard />} />
+            <Route path=\"/admin/notices\" element={<AdminDashboard />} />
+            <Route path=\"/admin/settings\" element={<AdminDashboard />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
+  );
+}
+
+export default App;
+"
+Observation: Overwrite successful: /app/frontend/src/App.js
+
+Action: $ sudo supervisorctl restart backend 2>&1 | tail -5 && sleep 3 && tail -n 30 /var/log/supervisor/backend.*.log 2>&1 | tail -30
+Observation: backend: stopped
+backend: started
+INFO:     Application shutdown complete.
+INFO:     Finished server process [226]
+INFO:     Started server process [543]
+INFO:     Waiting for application startup.
+2026-05-13 11:40:53,786 - root - INFO - Seeded user admin@nexus.edu
+2026-05-13 11:40:54,009 - root - INFO - Seeded user teacher@nexus.edu
+2026-05-13 11:40:54,235 - root - INFO - Seeded user student@nexus.edu
+2026-05-13 11:40:54,248 - root - INFO - Seeded events
+2026-05-13 11:40:54,258 - root - INFO - Seeded notices
+INFO:     Application startup complete.
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [543]
+INFO:     Stopping reloader process [194]
+INFO:     Will watch for changes in these directories: ['/app/backend']
+INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+INFO:     Started reloader process [1108] using WatchFiles
+
+==> /var/log/supervisor/backend.out.log <==
+INFO:     10.227.5.5:50660 - "GET /api/ HTTP/1.1" 200 OK
+INFO:     10.227.5.5:50660 - "GET /api/ HTTP/1.1" 200 OK
+INFO:     10.227.5.5:38802 - "GET /api/ HTTP/1.1" 200 OK
+INFO:     10.227.5.5:38802 - "GET /api/ HTTP/1.1" 200 OK
+INFO:     10.227.5.5:55214 - "GET /api/ HTTP/1.1" 200 OK
+INFO:     10.227.5.5:55214 - "GET /api/ HTTP/1.1" 200 OK
+INFO:     10.227.5.5:42778 - "GET /api/ HTTP/1.1" 200 OK
+INFO:     10.227.5.5:42778 - "GET /api/ HTTP/1.1" 200 OK
+INFO:     10.227.5.5:56280 - "GET /api/ HTTP/1.1" 200 OK
+INFO:     10.227.5.5:56280 - "GET /api/ HTTP/1.1" 200 OK
+Exit code: 0
+Backend is seeded and running. Let me quickly test login + AI chat APIs, then take screenshot of frontend.
+Action: $ API_URL=$(grep REACT_APP_BACKEND_URL /app/frontend/.env | cut -d '=' -f2) && \
+echo "=== HEALTH ===" && curl -s "$API_URL/api/health" && echo "" && \
+echo "=== LOGIN STUDENT ===" && \
+TOKEN=$(curl -s -X POST "$API_URL/api/auth/login" -H "Content-Type: application/json" -d '{"email":"student@nexus.edu","password":"Student@123"}' | python3 -c "import sys,json;d=json.load(sys.stdin);print(d['token'])") && \
+echo "got token: ${TOKEN:0:20}..." && \
+echo "=== STUDENT OVERVIEW ===" && \
+curl -s "$API_URL/api/student/overview" -H "Authorization: Bearer $TOKEN" | python3 -c "import sys,json;d=json.load(sys.stdin);print('attendance:',d['attendance_pct'],'subjects:',len(d['subjects']))" && \
+echo "=== EVENTS ===" && curl -s "$API_URL/api/events" | python3 -c "import sys,json;d=json.load(sys.stdin);print('events count:',len(d))" && \
+echo "=== AI CHAT ===" && curl -s -X POST "$API_URL/api/ai/chat" -H "Content-Type: application/json" -d '{"message":"Say only the word: pong"}' | python3 -c "import sys,json;d=json.load(sys.stdin);print('AI says:',d.get('response','ERROR')[:120])"
+Observation: === HEALTH ===
+{"status":"ok","time":"2026-05-13T11:48:06.542382+00:00"}
+=== LOGIN STUDENT ===
+got token: eyJhbGciOiJIUzI1NiIs...
+=== STUDENT OVERVIEW ===
+attendance: 92 subjects: 4
+=== EVENTS ===
+events count: 4
+=== AI CHAT ===
+AI says: pong
+Exit code: 0
