@@ -17,7 +17,7 @@ const TimelineItem = ({ year, title, description, index }) => (
     </div>
   </motion.div>
 );
-
+;;
 const About = () => {
   return (
     <div className="w-full pt-20">
