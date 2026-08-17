@@ -66,7 +66,7 @@ npm run dev
 3. In the "Framework Preset", select **Vite**.
 4. Set the **Root Directory** to `frontend`.
 5. *Crucial Step*: Open `frontend/vite.config.js` or your API calls, and ensure the fetch URLs point to your newly deployed Render Backend URL instead of `http://localhost:5000`.
-6. Click **Deploy**.
+6. Click **Deploy**
 
 ## 🎨 Performance & SEO Optimization
 - **Images**: All images currently use optimized external URLs (Unsplash). For local assets, ensure they are compressed WebP format.
