@@ -56,7 +56,7 @@ npm run dev
 3. Connect your repository.
 4. Set the **Root Directory** to `backend`.
 5. Set the Build Command to `npm install`.
-6. Set the Start Command to `npm start`.
+6. Set the Start Command to `npm start`
 7. In the **Environment Variables** section, add your `MONGODB_URI` and `JWT_SECRET`.
 8. Deploy! (Copy the resulting backend URL).
 
